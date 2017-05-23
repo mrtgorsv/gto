@@ -1,8 +1,6 @@
-﻿using System.Windows.Forms;
-
-namespace GTO.Controls
+﻿namespace GTO.Controls
 {
-    public partial class GtoEventReportControl : UserControl
+    public partial class GtoEventReportControl : UserControlBase
     {
         public GtoEventReportControl()
         {

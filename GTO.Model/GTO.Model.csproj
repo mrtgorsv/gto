@@ -55,6 +55,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\AgeGroup.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\GtoEvent.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
@@ -85,6 +88,7 @@
     <Compile Include="Context\Judge.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\Partial\GtoEventPlayerRecord.cs" />
     <Compile Include="Context\Partial\GtoEventTest.cs" />
     <Compile Include="Context\Partial\Player.cs" />
     <Compile Include="Context\Partial\Judge.cs" />

@@ -21,6 +21,8 @@
         <AssociationConnector Association="GtoContext.FK_GtoEventTest_Judge" ManuallyRouted="false" />
         <AssociationConnector Association="GtoContext.FK_GtoEventTest_Test" ManuallyRouted="false" />
         <AssociationConnector Association="GtoContext.FK_TestGroup_Test" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GtoContext.AgeGroup" Width="1.5" PointX="3.375" PointY="6.875" />
+        <AssociationConnector Association="GtoContext.FK_TestGroup_AgeGroup" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

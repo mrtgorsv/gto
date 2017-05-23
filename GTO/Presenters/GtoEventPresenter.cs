@@ -19,13 +19,16 @@ namespace GTO.Presenters
         private BindingList<GtoEventPlayer> _eventPlayers;
         private BindingList<GtoEventTest> _eventTests;
 
+        private List<ComboBoxItem> _players;
+
         public GtoEventPresenter()
         {
             _gtoEventService = new GtoEventService();
             _judgeService = new JudgeService();
             _playerService = new PlayerService();
 
-            EditableObject = _gtoEventService.GetCurrent();
+            EditableObject = _gtoEventService.GetCurrentEventRegistration();
+            InitPlayers();
         }
 
         public BindingList<GtoEventPlayer> EventPlayerDataSource
@@ -50,21 +53,33 @@ namespace GTO.Presenters
             }
         }
 
-        public List<ComboBoxItem> PlayerList
+        public List<ComboBoxItem> AviablePlayerList
         {
             get
             {
-                return _playerService.GetAll().Select(j => new ComboBoxItem
+                var aviablePlayers = new List<ComboBoxItem>(_players);
+                aviablePlayers.Insert(0 , new ComboBoxItem
                 {
-                    Text = j.FullName,
-                    Value = j.Id
-                }).ToList();
+                    Value = 0,
+                    Text = "Не выбрано"
+                });
+                return aviablePlayers;
             }
         }
 
         public void Save()
         {
+            UpdateUsers();
             _gtoEventService.AddOrUpdate(EditableObject);
+        }
+
+        private void UpdateUsers()
+        {
+            EditableObject.GtoEventPlayers.Clear();
+            foreach (GtoEventPlayer player in EventPlayerDataSource)
+            {
+                EditableObject.GtoEventPlayers.Add(player);
+            }
         }
 
         public void Dispose()
@@ -72,11 +87,21 @@ namespace GTO.Presenters
             _gtoEventService.Dispose();
         }
 
+        private void InitPlayers()
+        {
+            _players = _playerService.GetAll()
+                .Select(j => new ComboBoxItem
+                {
+                    Text = j.FullName,
+                    Value = j.Id
+                })
+                .ToList();
+        }
+
         private BindingList<GtoEventTest> GetEventTests()
         {
             return new BindingList<GtoEventTest>(EditableObject.GtoEventTests.ToList());
         }
-
 
         private BindingList<GtoEventPlayer> GetEvenPlayers()
         {

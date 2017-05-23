@@ -104,7 +104,15 @@
     <Compile Include="Controls\GtoEventTestResultTableControl.Designer.cs">
       <DependentUpon>GtoEventTestResultTableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserControlBase.Designer.cs">
+      <DependentUpon>UserControlBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ComboBoxItem.cs" />
+    <Compile Include="Models\GtoEventRecordLightModel.cs" />
+    <Compile Include="Presenters\GtoEventTestResultPresenter.cs" />
     <Compile Include="Presenters\GtoEventPresenter.cs" />
     <Compile Include="Presenters\JudgePresenter.cs" />
     <Compile Include="Presenters\PlayerPresenter.cs" />
@@ -140,6 +148,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\GtoEventTestResultTableControl.resx">
+      <DependentUpon>GtoEventTestResultTableControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\GtoRegistrationEventTableControl.resx">
       <DependentUpon>GtoRegistrationEventTableControl.cs</DependentUpon>
     </EmbeddedResource>

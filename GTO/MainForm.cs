@@ -52,22 +52,38 @@ namespace GTO
             ContentPanel.Controls.Clear();
             var regForm = new GtoRegistrationEventTableControl {Dock = DockStyle.Fill};
             ContentPanel.Controls.Add(regForm);
+            ShowForm(regForm);
         }
 
         private void btnCompetition_Click(object sender, EventArgs e)
         {
-            ContentPanel.Controls.Clear();
             var resultForm = new GtoEventTestResultTableControl {Dock = DockStyle.Fill};
-            ContentPanel.Controls.Add(resultForm);
+            ShowForm(resultForm);
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
             ContentPanel.Controls.Clear();
             var reportForm = new GtoEventReportControl { Dock = DockStyle.Fill };
-            ContentPanel.Controls.Add(reportForm);
+            ShowForm(reportForm);
+        }
+
+        private void OnNeedClose(object sender, EventArgs args)
+        {
+            var userControl = ContentPanel.Controls[0] as UserControlBase;
+            if (userControl != null)
+            {
+                userControl.NeedClose -= OnNeedClose;
+            }
+            ContentPanel.Controls.Clear();
         }
 
 
+        private void ShowForm(UserControlBase userControl)
+        {
+            ContentPanel.Controls.Clear();
+            userControl.NeedClose += OnNeedClose;
+            ContentPanel.Controls.Add(userControl);
+        }
     }
 }
