@@ -11,6 +11,7 @@
     <AssemblyName>GTO.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -51,23 +51,65 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="JetEntityFrameworkProvider, Version=1.2.6.0, Culture=neutral, PublicKeyToken=756cf6beb8fe7b41, processorArchitecture=x86">
-      <HintPath>..\packages\JetEntityFrameworkProvider.1.2.7\lib\JetEntityFrameworkProvider.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\GtoEvent.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GtoEventPlayer.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GtoEventPlayerRecord.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GtoEventTest.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GtoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GtoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GtoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GtoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GtoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Judge.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Partial\GtoEventTest.cs" />
+    <Compile Include="Context\Partial\Player.cs" />
+    <Compile Include="Context\Partial\Judge.cs" />
+    <Compile Include="Context\Player.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Test.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\TestGroup.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Context\GtoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GtoModel.edmx</DependentUpon>
+      <LastGenOutput>GtoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Context\GtoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GtoModel.edmx</DependentUpon>
+      <LastGenOutput>GtoModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Database\GtoDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -78,12 +120,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Context\GtoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GtoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Context\GtoModel.edmx.diagram">
+      <DependentUpon>GtoModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -92,8 +141,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Context\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

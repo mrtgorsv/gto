@@ -1,33 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using GTO.Controls;
+using GTO.Views;
 
 namespace GTO
 {
     public partial class MainForm : Form
     {
 
-        private AddJudgeForm _addJudgeForm = new AddJudgeForm();
-        private AddPlayerForm _addPlayerForm = new AddPlayerForm();
+        private GtoEventTestResultTableControl _eventResultView;
+        private GtoEventReportControl _eventReportView;
+        private GtoRegistrationEventTableControl _registrationEventView;
 
         public MainForm()
         {
             InitializeComponent();
-            AddOwnedForm(_addJudgeForm);
-            AddOwnedForm(_addPlayerForm);
         }
 
-        private void fMain_Load(object sender, EventArgs e)
+        private void OnLoad(object sender, EventArgs e)
         {
-            tabPage1.Parent = null;
-            tabPage2.Parent = null;
-            tabPage3.Parent = null;
-            tabPage4.Parent = tabControl1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -44,36 +35,37 @@ namespace GTO
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
         {
-            _addPlayerForm.ShowDialog(this);
+            var addPlayerForm = new AddPlayerForm();
+            addPlayerForm.ShowDialog(this);
+            addPlayerForm.Dispose();
         }
 
         private void btnAddJudge_Click(object sender, EventArgs e)
         {
-            _addJudgeForm.ShowDialog(this);
+            var addJudgeForm = new AddJudgeForm();
+            addJudgeForm.ShowDialog(this);
+            addJudgeForm.Dispose();
         }
 
         private void btnTable_Click(object sender, EventArgs e)
         {
-            tabPage1.Parent = tabControl1;
-            tabPage2.Parent = null;
-            tabPage3.Parent = null;
-            tabPage4.Parent = null;
+            ContentPanel.Controls.Clear();
+            var regForm = new GtoRegistrationEventTableControl {Dock = DockStyle.Fill};
+            ContentPanel.Controls.Add(regForm);
         }
 
         private void btnCompetition_Click(object sender, EventArgs e)
         {
-            tabPage1.Parent = null;
-            tabPage2.Parent = tabControl1;
-            tabPage3.Parent = null;
-            tabPage4.Parent = null;
+            ContentPanel.Controls.Clear();
+            var resultForm = new GtoEventTestResultTableControl {Dock = DockStyle.Fill};
+            ContentPanel.Controls.Add(resultForm);
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            tabPage1.Parent = null;
-            tabPage2.Parent = null;
-            tabPage3.Parent = tabControl1;
-            tabPage4.Parent = null;
+            ContentPanel.Controls.Clear();
+            var reportForm = new GtoEventReportControl { Dock = DockStyle.Fill };
+            ContentPanel.Controls.Add(reportForm);
         }
 
 

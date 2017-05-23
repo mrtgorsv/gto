@@ -1,0 +1,14 @@
+G:\GTO\GTO.Services\bin\Debug\Database\GtoDatabase.mdf
+G:\GTO\GTO.Services\bin\Debug\Database\GtoDatabase_log.ldf
+G:\GTO\GTO.Services\bin\Debug\GTO.Services.dll.config
+G:\GTO\GTO.Services\bin\Debug\GTO.Services.dll
+G:\GTO\GTO.Services\bin\Debug\GTO.Services.pdb
+G:\GTO\GTO.Services\bin\Debug\EntityFramework.dll
+G:\GTO\GTO.Services\bin\Debug\EntityFramework.SqlServer.dll
+G:\GTO\GTO.Services\bin\Debug\GTO.Model.dll
+G:\GTO\GTO.Services\bin\Debug\GTO.Model.pdb
+G:\GTO\GTO.Services\bin\Debug\EntityFramework.xml
+G:\GTO\GTO.Services\bin\Debug\EntityFramework.SqlServer.xml
+G:\GTO\GTO.Services\obj\Debug\GTO.Services.csprojResolveAssemblyReference.cache
+G:\GTO\GTO.Services\obj\Debug\GTO.Services.dll
+G:\GTO\GTO.Services\obj\Debug\GTO.Services.pdb

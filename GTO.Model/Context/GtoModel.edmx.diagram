@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5bb559d48e3d41aa8ad734a841cb67a2" Name="Diagram1">
+        <EntityTypeShape EntityType="GtoContext.GtoEvent" Width="1.5" PointX="4.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEventPlayer" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEventPlayerRecord" Width="1.5" PointX="3.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEventTest" Width="1.5" PointX="6.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.Judge" Width="1.5" PointX="9.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.Player" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.Test" Width="1.5" PointX="6.625" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.TestGroup" Width="1.5" PointX="6.5" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventPlayer_GtoEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventTest_GtoEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventPlayer_Player" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventPlayerRecord_GtoEventPlayer" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventPlayerRecord_GtoEventTest" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventTest_Judge" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_GtoEventTest_Test" ManuallyRouted="false" />
+        <AssociationConnector Association="GtoContext.FK_TestGroup_Test" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

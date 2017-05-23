@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GtoContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GtoEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GtoEventPlayer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="GtoEventId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GtoEventPlayerRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GtoEventPlayerId" Type="int" Nullable="false" />
+          <Property Name="GtoEventTestId" Type="int" Nullable="false" />
+          <Property Name="TestValue" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GtoEventTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GtoEventId" Type="int" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="JudgeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Judge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Sex" Type="smallint" Nullable="false" />
+          <Property Name="PassSerial" Type="smallint" Nullable="false" />
+          <Property Name="PassNumber" Type="int" Nullable="false" />
+          <Property Name="PassCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassLocation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassDate" Type="datetime" Nullable="false" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RegistrationAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Sex" Type="smallint" Nullable="false" />
+          <Property Name="PassSerial" Type="smallint" Nullable="false" />
+          <Property Name="PassNumber" Type="int" Nullable="false" />
+          <Property Name="PassCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassLocation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassDate" Type="datetime" Nullable="false" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RegistrationAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SportCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestType" Type="smallint" Nullable="false" />
+          <Property Name="Required" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+          <Property Name="AgeMax" Type="smallint" Nullable="false" />
+          <Property Name="AgeMin" Type="smallint" Nullable="false" />
+          <Property Name="Bronze" Type="float" />
+          <Property Name="Serebro" Type="float" />
+          <Property Name="Gold" Type="float" />
+        </EntityType>
+        <Association Name="FK_GtoEventPlayer_GtoEvent">
+          <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
+          <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayer">
+              <PropertyRef Name="GtoEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventPlayer_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayer">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventPlayerRecord_GtoEventPlayer">
+          <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="1" />
+          <End Role="GtoEventPlayerRecord" Type="Self.GtoEventPlayerRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEventPlayer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayerRecord">
+              <PropertyRef Name="GtoEventPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventPlayerRecord_GtoEventTest">
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="1" />
+          <End Role="GtoEventPlayerRecord" Type="Self.GtoEventPlayerRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEventTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayerRecord">
+              <PropertyRef Name="GtoEventTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventTest_GtoEvent">
+          <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventTest">
+              <PropertyRef Name="GtoEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventTest_Judge">
+          <End Role="Judge" Type="Self.Judge" Multiplicity="0..1" />
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Judge">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventTest">
+              <PropertyRef Name="JudgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventTest_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventTest">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestGroup_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestGroup" Type="Self.TestGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestGroup">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GtoContextStoreContainer">
+          <EntitySet Name="GtoEvent" EntityType="Self.GtoEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GtoEventPlayer" EntityType="Self.GtoEventPlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GtoEventPlayerRecord" EntityType="Self.GtoEventPlayerRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GtoEventTest" EntityType="Self.GtoEventTest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Judge" EntityType="Self.Judge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestGroup" EntityType="Self.TestGroup" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GtoEventPlayer_GtoEvent" Association="Self.FK_GtoEventPlayer_GtoEvent">
+            <End Role="GtoEvent" EntitySet="GtoEvent" />
+            <End Role="GtoEventPlayer" EntitySet="GtoEventPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventPlayer_Player" Association="Self.FK_GtoEventPlayer_Player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="GtoEventPlayer" EntitySet="GtoEventPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventPlayerRecord_GtoEventPlayer" Association="Self.FK_GtoEventPlayerRecord_GtoEventPlayer">
+            <End Role="GtoEventPlayer" EntitySet="GtoEventPlayer" />
+            <End Role="GtoEventPlayerRecord" EntitySet="GtoEventPlayerRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventPlayerRecord_GtoEventTest" Association="Self.FK_GtoEventPlayerRecord_GtoEventTest">
+            <End Role="GtoEventTest" EntitySet="GtoEventTest" />
+            <End Role="GtoEventPlayerRecord" EntitySet="GtoEventPlayerRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventTest_GtoEvent" Association="Self.FK_GtoEventTest_GtoEvent">
+            <End Role="GtoEvent" EntitySet="GtoEvent" />
+            <End Role="GtoEventTest" EntitySet="GtoEventTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventTest_Judge" Association="Self.FK_GtoEventTest_Judge">
+            <End Role="Judge" EntitySet="Judge" />
+            <End Role="GtoEventTest" EntitySet="GtoEventTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventTest_Test" Association="Self.FK_GtoEventTest_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="GtoEventTest" EntitySet="GtoEventTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestGroup_Test" Association="Self.FK_TestGroup_Test">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestGroup" EntitySet="TestGroup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GtoContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GtoEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GtoEventPlayers" Relationship="Self.FK_GtoEventPlayer_GtoEvent" FromRole="GtoEvent" ToRole="GtoEventPlayer" />
+          <NavigationProperty Name="GtoEventTests" Relationship="Self.FK_GtoEventTest_GtoEvent" FromRole="GtoEvent" ToRole="GtoEventTest" />
+        </EntityType>
+        <EntityType Name="GtoEventPlayer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="GtoEventId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GtoEvent" Relationship="Self.FK_GtoEventPlayer_GtoEvent" FromRole="GtoEventPlayer" ToRole="GtoEvent" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_GtoEventPlayer_Player" FromRole="GtoEventPlayer" ToRole="Player" />
+          <NavigationProperty Name="GtoEventPlayerRecords" Relationship="Self.FK_GtoEventPlayerRecord_GtoEventPlayer" FromRole="GtoEventPlayer" ToRole="GtoEventPlayerRecord" />
+        </EntityType>
+        <EntityType Name="GtoEventPlayerRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GtoEventPlayerId" Type="Int32" Nullable="false" />
+          <Property Name="GtoEventTestId" Type="Int32" Nullable="false" />
+          <Property Name="TestValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GtoEventPlayer" Relationship="Self.FK_GtoEventPlayerRecord_GtoEventPlayer" FromRole="GtoEventPlayerRecord" ToRole="GtoEventPlayer" />
+          <NavigationProperty Name="GtoEventTest" Relationship="Self.FK_GtoEventPlayerRecord_GtoEventTest" FromRole="GtoEventPlayerRecord" ToRole="GtoEventTest" />
+        </EntityType>
+        <EntityType Name="GtoEventTest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GtoEventId" Type="Int32" Nullable="false" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <Property Name="JudgeId" Type="Int32" />
+          <NavigationProperty Name="GtoEvent" Relationship="Self.FK_GtoEventTest_GtoEvent" FromRole="GtoEventTest" ToRole="GtoEvent" />
+          <NavigationProperty Name="GtoEventPlayerRecords" Relationship="Self.FK_GtoEventPlayerRecord_GtoEventTest" FromRole="GtoEventTest" ToRole="GtoEventPlayerRecord" />
+          <NavigationProperty Name="Judge" Relationship="Self.FK_GtoEventTest_Judge" FromRole="GtoEventTest" ToRole="Judge" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_GtoEventTest_Test" FromRole="GtoEventTest" ToRole="Test" />
+        </EntityType>
+        <EntityType Name="Judge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sex" Type="Int16" Nullable="false" />
+          <Property Name="PassSerial" Type="Int16" Nullable="false" />
+          <Property Name="PassNumber" Type="Int32" Nullable="false" />
+          <Property Name="PassCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GtoEventTests" Relationship="Self.FK_GtoEventTest_Judge" FromRole="Judge" ToRole="GtoEventTest" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sex" Type="Int16" Nullable="false" />
+          <Property Name="PassSerial" Type="Int16" Nullable="false" />
+          <Property Name="PassNumber" Type="Int32" Nullable="false" />
+          <Property Name="PassCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SportCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GtoEventPlayers" Relationship="Self.FK_GtoEventPlayer_Player" FromRole="Player" ToRole="GtoEventPlayer" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TestType" Type="Int16" Nullable="false" />
+          <Property Name="Required" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GtoEventTests" Relationship="Self.FK_GtoEventTest_Test" FromRole="Test" ToRole="GtoEventTest" />
+          <NavigationProperty Name="TestGroups" Relationship="Self.FK_TestGroup_Test" FromRole="Test" ToRole="TestGroup" />
+        </EntityType>
+        <EntityType Name="TestGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestId" Type="Int32" Nullable="false" />
+          <Property Name="AgeMax" Type="Int16" Nullable="false" />
+          <Property Name="AgeMin" Type="Int16" Nullable="false" />
+          <Property Name="Bronze" Type="Double" />
+          <Property Name="Serebro" Type="Double" />
+          <Property Name="Gold" Type="Double" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_TestGroup_Test" FromRole="TestGroup" ToRole="Test" />
+        </EntityType>
+        <Association Name="FK_GtoEventPlayer_GtoEvent">
+          <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
+          <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayer">
+              <PropertyRef Name="GtoEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventTest_GtoEvent">
+          <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventTest">
+              <PropertyRef Name="GtoEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventPlayer_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayer">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventPlayerRecord_GtoEventPlayer">
+          <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="1" />
+          <End Role="GtoEventPlayerRecord" Type="Self.GtoEventPlayerRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEventPlayer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayerRecord">
+              <PropertyRef Name="GtoEventPlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventPlayerRecord_GtoEventTest">
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="1" />
+          <End Role="GtoEventPlayerRecord" Type="Self.GtoEventPlayerRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GtoEventTest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventPlayerRecord">
+              <PropertyRef Name="GtoEventTestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventTest_Judge">
+          <End Role="Judge" Type="Self.Judge" Multiplicity="0..1" />
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Judge">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventTest">
+              <PropertyRef Name="JudgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GtoEventTest_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="GtoEventTest" Type="Self.GtoEventTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GtoEventTest">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestGroup_Test">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestGroup" Type="Self.TestGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestGroup">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GtoDatabaseContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GtoEvents" EntityType="Self.GtoEvent" />
+          <EntitySet Name="GtoEventPlayers" EntityType="Self.GtoEventPlayer" />
+          <EntitySet Name="GtoEventPlayerRecords" EntityType="Self.GtoEventPlayerRecord" />
+          <EntitySet Name="GtoEventTests" EntityType="Self.GtoEventTest" />
+          <EntitySet Name="Judges" EntityType="Self.Judge" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="TestGroups" EntityType="Self.TestGroup" />
+          <AssociationSet Name="FK_GtoEventPlayer_GtoEvent" Association="Self.FK_GtoEventPlayer_GtoEvent">
+            <End Role="GtoEvent" EntitySet="GtoEvents" />
+            <End Role="GtoEventPlayer" EntitySet="GtoEventPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventTest_GtoEvent" Association="Self.FK_GtoEventTest_GtoEvent">
+            <End Role="GtoEvent" EntitySet="GtoEvents" />
+            <End Role="GtoEventTest" EntitySet="GtoEventTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventPlayer_Player" Association="Self.FK_GtoEventPlayer_Player">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="GtoEventPlayer" EntitySet="GtoEventPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventPlayerRecord_GtoEventPlayer" Association="Self.FK_GtoEventPlayerRecord_GtoEventPlayer">
+            <End Role="GtoEventPlayer" EntitySet="GtoEventPlayers" />
+            <End Role="GtoEventPlayerRecord" EntitySet="GtoEventPlayerRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventPlayerRecord_GtoEventTest" Association="Self.FK_GtoEventPlayerRecord_GtoEventTest">
+            <End Role="GtoEventTest" EntitySet="GtoEventTests" />
+            <End Role="GtoEventPlayerRecord" EntitySet="GtoEventPlayerRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventTest_Judge" Association="Self.FK_GtoEventTest_Judge">
+            <End Role="Judge" EntitySet="Judges" />
+            <End Role="GtoEventTest" EntitySet="GtoEventTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GtoEventTest_Test" Association="Self.FK_GtoEventTest_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="GtoEventTest" EntitySet="GtoEventTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestGroup_Test" Association="Self.FK_TestGroup_Test">
+            <End Role="Test" EntitySet="Tests" />
+            <End Role="TestGroup" EntitySet="TestGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GtoContextStoreContainer" CdmEntityContainer="GtoDatabaseContext">
+          <EntitySetMapping Name="GtoEvents">
+            <EntityTypeMapping TypeName="GtoContext.GtoEvent">
+              <MappingFragment StoreEntitySet="GtoEvent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GtoEventPlayers">
+            <EntityTypeMapping TypeName="GtoContext.GtoEventPlayer">
+              <MappingFragment StoreEntitySet="GtoEventPlayer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="GtoEventId" ColumnName="GtoEventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GtoEventPlayerRecords">
+            <EntityTypeMapping TypeName="GtoContext.GtoEventPlayerRecord">
+              <MappingFragment StoreEntitySet="GtoEventPlayerRecord">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GtoEventPlayerId" ColumnName="GtoEventPlayerId" />
+                <ScalarProperty Name="GtoEventTestId" ColumnName="GtoEventTestId" />
+                <ScalarProperty Name="TestValue" ColumnName="TestValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GtoEventTests">
+            <EntityTypeMapping TypeName="GtoContext.GtoEventTest">
+              <MappingFragment StoreEntitySet="GtoEventTest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GtoEventId" ColumnName="GtoEventId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="JudgeId" ColumnName="JudgeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Judges">
+            <EntityTypeMapping TypeName="GtoContext.Judge">
+              <MappingFragment StoreEntitySet="Judge">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="PassSerial" ColumnName="PassSerial" />
+                <ScalarProperty Name="PassNumber" ColumnName="PassNumber" />
+                <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+                <ScalarProperty Name="PassLocation" ColumnName="PassLocation" />
+                <ScalarProperty Name="PassDate" ColumnName="PassDate" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="GtoContext.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="PassSerial" ColumnName="PassSerial" />
+                <ScalarProperty Name="PassNumber" ColumnName="PassNumber" />
+                <ScalarProperty Name="PassCode" ColumnName="PassCode" />
+                <ScalarProperty Name="PassLocation" ColumnName="PassLocation" />
+                <ScalarProperty Name="PassDate" ColumnName="PassDate" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="SportCategory" ColumnName="SportCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="GtoContext.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TestType" ColumnName="TestType" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestGroups">
+            <EntityTypeMapping TypeName="GtoContext.TestGroup">
+              <MappingFragment StoreEntitySet="TestGroup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="AgeMax" ColumnName="AgeMax" />
+                <ScalarProperty Name="AgeMin" ColumnName="AgeMin" />
+                <ScalarProperty Name="Bronze" ColumnName="Bronze" />
+                <ScalarProperty Name="Serebro" ColumnName="Serebro" />
+                <ScalarProperty Name="Gold" ColumnName="Gold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
