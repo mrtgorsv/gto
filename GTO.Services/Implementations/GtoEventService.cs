@@ -169,5 +169,16 @@ namespace GTO.Services.Implementations
                 _context.GtoEventPlayerRecords.Add(record);
             }
         }
+
+        public List<TestGroup> GetTestGroups()
+        {
+            return _context.TestGroups.ToList();
+        }
+        public List<AgeGroup> GetAgeGroups()
+        {
+            return _context.AgeGroups
+                .Include(ag=> ag.TestGroups)
+                .ToList();
+        }
     }
 }

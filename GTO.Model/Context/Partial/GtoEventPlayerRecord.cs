@@ -10,5 +10,9 @@
         {
             get { return GtoEventTest != null ? GtoEventTest.JudgeName : string.Empty; }
         }
+        public string EventTestPlayerName
+        {
+            get { return GtoEventPlayer != null ? GtoEventPlayer.PlayerName : string.Empty; }
+        }
     }
 }

@@ -89,6 +89,7 @@
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\Partial\GtoEventPlayerRecord.cs" />
+    <Compile Include="Context\Partial\GtoEventPlayer.cs" />
     <Compile Include="Context\Partial\GtoEventTest.cs" />
     <Compile Include="Context\Partial\Player.cs" />
     <Compile Include="Context\Partial\Judge.cs" />

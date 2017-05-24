@@ -15,12 +15,14 @@ namespace GTO.Presenters
         private readonly GtoEventService _gtoEventService;
 
         private BindingList<GtoEventPlayerRecord> _gtoEventPlayerRecords;
+        private List<AgeGroup> _aviableAgeGroups;
 
         public GtoEventTestResultPresenter()
         {
             _gtoEventService = new GtoEventService();
 
             _currentEvent = _gtoEventService.GetCurrentEventDetail();
+            _aviableAgeGroups = _gtoEventService.GetAgeGroups();
 
             InitEventPlayerRecords();
         }
@@ -35,7 +37,7 @@ namespace GTO.Presenters
             get { return _gtoEventPlayerRecords; }
         }
 
-        public List<ComboBoxItem> EventTests
+        public List<ComboBoxItem> GtoEventTestDataSource
         {
             get
             {
@@ -58,5 +60,36 @@ namespace GTO.Presenters
         {
             _gtoEventService.Dispose();
         }
+
+        public List<ComboBoxItem> GetAviableEventTests(GtoEventPlayerRecord record)
+        {
+            var age = record.GtoEventPlayer.Player.Age;
+            var sex = record.GtoEventPlayer.Player.Sex;
+
+            var ageGroup = _aviableAgeGroups.FirstOrDefault(ag => ag.Max >= age && ag.Min <= age);
+            if (ageGroup == null)
+            {
+                return new List<ComboBoxItem>();
+            }
+            var aviableTestIds = ageGroup.TestGroups.Where(tg => tg.Sex == sex || tg.Sex == 2).Select(tg=> tg.TestId).ToList();
+
+            return _currentEvent.GtoEventTests.Where(gtet => aviableTestIds.Contains(gtet.TestId)).Select(
+                gtet => new ComboBoxItem()
+                {
+                    Value = gtet.Id,
+                    Text = gtet.TestName
+                }).ToList();
+        }
+
+        public void UpdateRecordTest(GtoEventPlayerRecord record)
+        {
+            record.GtoEventTest = _currentEvent.GtoEventTests.FirstOrDefault(gete => gete.Id == record.GtoEventTestId);
+        }
+    }
+
+    public class GtoEventTestRecodDto
+    {
+        public int GtoPlayerId { get; set; }
+        public int? GtoTestId { get; set; }
     }
 }
