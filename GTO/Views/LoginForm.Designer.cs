@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnEnter = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -42,9 +42,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Controls.Add(this.PasswordTextBox);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtLogin);
+            this.groupBox1.Controls.Add(this.LoginTextBox);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(14, 12);
             this.groupBox1.Name = "groupBox1";
@@ -52,14 +52,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // txtPassword
+            // PasswordTextBox
             // 
-            this.txtPassword.Location = new System.Drawing.Point(16, 108);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(196, 20);
-            this.txtPassword.TabIndex = 2;
-            this.txtPassword.Text = "password";
+            this.PasswordTextBox.Location = new System.Drawing.Point(16, 108);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
+            this.PasswordTextBox.Size = new System.Drawing.Size(196, 20);
+            this.PasswordTextBox.TabIndex = 2;
+            this.PasswordTextBox.Text = "password";
             // 
             // label2
             // 
@@ -71,13 +71,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Пароль пользователя : ";
             // 
-            // txtLogin
+            // LoginTextBox
             // 
-            this.txtLogin.Location = new System.Drawing.Point(16, 49);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(197, 20);
-            this.txtLogin.TabIndex = 1;
-            this.txtLogin.Text = "GTO";
+            this.LoginTextBox.Location = new System.Drawing.Point(16, 49);
+            this.LoginTextBox.Name = "LoginTextBox";
+            this.LoginTextBox.Size = new System.Drawing.Size(197, 20);
+            this.LoginTextBox.TabIndex = 1;
+            this.LoginTextBox.Text = "GTO";
             // 
             // label1
             // 
@@ -98,7 +98,7 @@
             this.btnEnter.TabIndex = 0;
             this.btnEnter.Text = "ВОЙТИ";
             this.btnEnter.UseVisualStyleBackColor = true;
-            this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
+            this.btnEnter.Click += new System.EventHandler(this.OnLoginClick);
             // 
             // btnClose
             // 
@@ -109,7 +109,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "ВЫХОД";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.OnCloseClick);
             // 
             // lblAbout
             // 
@@ -124,7 +124,7 @@
             this.lblAbout.TabIndex = 4;
             this.lblAbout.TabStop = true;
             this.lblAbout.Text = "О программе...";
-            this.lblAbout.Click += new System.EventHandler(this.lblAbout_Click);
+            this.lblAbout.Click += new System.EventHandler(this.OnAboutClick);
             // 
             // LoginForm
             // 
@@ -154,9 +154,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox LoginTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Button btnClose;

@@ -9,10 +9,12 @@ namespace GTO.Presenters
     public class PlayerReportPresenter : IDisposable
     {
         private readonly PlayerService _playerService;
+        private readonly ReportService _reportService;
 
         public PlayerReportPresenter()
         {
             _playerService = new PlayerService();
+            _reportService = new ReportService();
         }
 
         public List<ComboBoxItem> PlayerList
@@ -29,14 +31,15 @@ namespace GTO.Presenters
             }
         }
 
-        public void ShowReport(int playerId)
+        public void ShowReport(int playerId , string fileName)
         {
-            _playerService.ShowReport(playerId);
+            _reportService.ShowReport(playerId, fileName);
         }
 
         public void Dispose()
         {
             _playerService.Dispose();
+            _reportService.Dispose();
         }
     }
 }

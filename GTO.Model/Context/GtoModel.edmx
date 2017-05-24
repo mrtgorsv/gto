@@ -13,6 +13,17 @@
           <Property Name="Min" Type="smallint" Nullable="false" />
           <Property Name="Max" Type="smallint" Nullable="false" />
         </EntityType>
+        <EntityType Name="AgeGroupRequirment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoldCount" Type="smallint" Nullable="false" />
+          <Property Name="SerebroCount" Type="smallint" Nullable="false" />
+          <Property Name="BronzeCount" Type="smallint" Nullable="false" />
+          <Property Name="AgeGroupId" Type="int" Nullable="false" />
+          <Property Name="Sex" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="GtoEvent">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,17 +84,17 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="MiddleName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="200" />
           <Property Name="BirthDate" Type="datetime" Nullable="false" />
           <Property Name="Sex" Type="smallint" Nullable="false" />
-          <Property Name="PassSerial" Type="smallint" Nullable="false" />
-          <Property Name="PassNumber" Type="int" Nullable="false" />
-          <Property Name="PassCode" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="PassLocation" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PassDate" Type="datetime" Nullable="false" />
-          <Property Name="HomeAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassSerial" Type="smallint" />
+          <Property Name="PassNumber" Type="int" />
+          <Property Name="PassCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="PassLocation" Type="nvarchar(max)" />
+          <Property Name="PassDate" Type="datetime" />
+          <Property Name="HomeAddress" Type="nvarchar(max)" />
           <Property Name="RegistrationAddress" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SportCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SportCategory" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Test">
           <Key>
@@ -108,6 +119,26 @@
           <Property Name="AgeGroupId" Type="int" Nullable="false" />
           <Property Name="TestType" Type="smallint" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgeGroupRequirment_AgeGroup">
+          <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
+          <End Role="AgeGroupRequirment" Type="Self.AgeGroupRequirment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgeGroupRequirment">
+              <PropertyRef Name="AgeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GtoEventPlayer_GtoEvent">
           <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
           <End Role="GtoEventPlayer" Type="Self.GtoEventPlayer" Multiplicity="*" />
@@ -218,6 +249,7 @@
         </Association>
         <EntityContainer Name="GtoContextStoreContainer">
           <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgeGroupRequirment" EntityType="Self.AgeGroupRequirment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GtoEvent" EntityType="Self.GtoEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GtoEventPlayer" EntityType="Self.GtoEventPlayer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GtoEventPlayerRecord" EntityType="Self.GtoEventPlayerRecord" Schema="dbo" store:Type="Tables" />
@@ -226,6 +258,11 @@
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestGroup" EntityType="Self.TestGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AgeGroupRequirment_AgeGroup" Association="Self.FK_AgeGroupRequirment_AgeGroup">
+            <End Role="AgeGroup" EntitySet="AgeGroup" />
+            <End Role="AgeGroupRequirment" EntitySet="AgeGroupRequirment" />
+          </AssociationSet>
           <AssociationSet Name="FK_GtoEventPlayer_GtoEvent" Association="Self.FK_GtoEventPlayer_GtoEvent">
             <End Role="GtoEvent" EntitySet="GtoEvent" />
             <End Role="GtoEventPlayer" EntitySet="GtoEventPlayer" />
@@ -339,17 +376,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Sex" Type="Int16" Nullable="false" />
-          <Property Name="PassSerial" Type="Int16" Nullable="false" />
-          <Property Name="PassNumber" Type="Int32" Nullable="false" />
-          <Property Name="PassCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PassLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PassDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassSerial" Type="Int16" />
+          <Property Name="PassNumber" Type="Int32" />
+          <Property Name="PassCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PassLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PassDate" Type="DateTime" Precision="3" />
+          <Property Name="HomeAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RegistrationAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SportCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SportCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="GtoEventPlayers" Relationship="Self.FK_GtoEventPlayer_Player" FromRole="Player" ToRole="GtoEventPlayer" />
         </EntityType>
         <EntityType Name="Test">
@@ -521,6 +558,12 @@
             <End Role="AgeGroup" EntitySet="AgeGroups" />
             <End Role="TestGroup" EntitySet="TestGroups" />
           </AssociationSet>
+          <EntitySet Name="AgeGroupRequirments" EntityType="GtoContext.AgeGroupRequirment" />
+          <AssociationSet Name="FK_AgeGroupRequirment_AgeGroup" Association="GtoContext.FK_AgeGroupRequirment_AgeGroup">
+            <End Role="AgeGroup" EntitySet="AgeGroups" />
+            <End Role="AgeGroupRequirment" EntitySet="AgeGroupRequirments" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="GtoContext.User" />
         </EntityContainer>
         <EntityType Name="AgeGroup">
           <Key>
@@ -530,6 +573,7 @@
           <Property Name="Min" Type="Int16" Nullable="false" />
           <Property Name="Max" Type="Int16" Nullable="false" />
           <NavigationProperty Name="TestGroups" Relationship="GtoContext.FK_TestGroup_AgeGroup" FromRole="AgeGroup" ToRole="TestGroup" />
+          <NavigationProperty Name="AgeGroupRequirments" Relationship="GtoContext.FK_AgeGroupRequirment_AgeGroup" FromRole="AgeGroup" ToRole="AgeGroupRequirment" />
         </EntityType>
         <Association Name="FK_TestGroup_AgeGroup">
           <End Type="GtoContext.AgeGroup" Role="AgeGroup" Multiplicity="1" />
@@ -545,6 +589,38 @@
         </Association>
         <EnumType Name="TestType" UnderlyingType="Int16" a:ExternalTypeName="GTO.Model.Enums.TestType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="ResultRank" UnderlyingType="Int16" a:ExternalTypeName="GTO.Model.Enums.ResultRank" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="AgeGroupRequirment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoldCount" Type="Int16" Nullable="false" />
+          <Property Name="SerebroCount" Type="Int16" Nullable="false" />
+          <Property Name="BronzeCount" Type="Int16" Nullable="false" />
+          <Property Name="AgeGroupId" Type="Int32" Nullable="false" />
+          <Property Name="Sex" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="AgeGroup" Relationship="GtoContext.FK_AgeGroupRequirment_AgeGroup" FromRole="AgeGroupRequirment" ToRole="AgeGroup" />
+        </EntityType>
+        <Association Name="FK_AgeGroupRequirment_AgeGroup">
+          <End Type="GtoContext.AgeGroup" Role="AgeGroup" Multiplicity="1" />
+          <End Type="GtoContext.AgeGroupRequirment" Role="AgeGroupRequirment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgeGroupRequirment">
+              <PropertyRef Name="AgeGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -659,6 +735,27 @@
               <MappingFragment StoreEntitySet="AgeGroup">
                 <ScalarProperty Name="Max" ColumnName="Max" />
                 <ScalarProperty Name="Min" ColumnName="Min" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgeGroupRequirments">
+            <EntityTypeMapping TypeName="GtoContext.AgeGroupRequirment">
+              <MappingFragment StoreEntitySet="AgeGroupRequirment">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
+                <ScalarProperty Name="BronzeCount" ColumnName="BronzeCount" />
+                <ScalarProperty Name="SerebroCount" ColumnName="SerebroCount" />
+                <ScalarProperty Name="GoldCount" ColumnName="GoldCount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GtoContext.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

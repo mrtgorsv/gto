@@ -2,7 +2,6 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
-/GTO/bin/Debug
-/GTO/obj/x86
-/GTO.Model/obj/Debug
 /packages
+bin
+obj

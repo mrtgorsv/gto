@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PassDateDatePicker = new System.Windows.Forms.DateTimePicker();
             this.PassLocationTextBox = new System.Windows.Forms.TextBox();
             this.FirstNameTextBox = new System.Windows.Forms.TextBox();
@@ -35,11 +36,11 @@
             this.LastNameTextBox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.AddressTextBox = new System.Windows.Forms.TextBox();
-            this.MiddleNameTextBox = new System.Windows.Forms.TextBox();
-            this.PassNumberTextBox = new System.Windows.Forms.TextBox();
-            this.PassSerialTextBox = new System.Windows.Forms.TextBox();
             this.RegAddressTextBox = new System.Windows.Forms.TextBox();
+            this.MiddleNameTextBox = new System.Windows.Forms.TextBox();
+            this.PassNumberUpDown = new System.Windows.Forms.NumericUpDown();
+            this.PassSerialUpDown = new System.Windows.Forms.NumericUpDown();
+            this.LocalAddressTextBox = new System.Windows.Forms.TextBox();
             this.SexComboBox = new System.Windows.Forms.ComboBox();
             this.BirthDateDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
@@ -56,7 +57,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.FormErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.PassNumberUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PassSerialUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // PassDateDatePicker
@@ -112,12 +117,12 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Фамилия : ";
             // 
-            // AddressTextBox
+            // RegAddressTextBox
             // 
-            this.AddressTextBox.Location = new System.Drawing.Point(137, 280);
-            this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(157, 20);
-            this.AddressTextBox.TabIndex = 10;
+            this.RegAddressTextBox.Location = new System.Drawing.Point(137, 280);
+            this.RegAddressTextBox.Name = "RegAddressTextBox";
+            this.RegAddressTextBox.Size = new System.Drawing.Size(157, 20);
+            this.RegAddressTextBox.TabIndex = 10;
             // 
             // MiddleNameTextBox
             // 
@@ -126,26 +131,26 @@
             this.MiddleNameTextBox.Size = new System.Drawing.Size(187, 20);
             this.MiddleNameTextBox.TabIndex = 2;
             // 
-            // PassNumberTextBox
+            // PassNumberUpDown
             // 
-            this.PassNumberTextBox.Location = new System.Drawing.Point(174, 17);
-            this.PassNumberTextBox.Name = "PassNumberTextBox";
-            this.PassNumberTextBox.Size = new System.Drawing.Size(92, 20);
-            this.PassNumberTextBox.TabIndex = 6;
+            this.PassNumberUpDown.Location = new System.Drawing.Point(174, 17);
+            this.PassNumberUpDown.Name = "PassNumberUpDown";
+            this.PassNumberUpDown.Size = new System.Drawing.Size(92, 20);
+            this.PassNumberUpDown.TabIndex = 6;
             // 
-            // PassSerialTextBox
+            // PassSerialUpDown
             // 
-            this.PassSerialTextBox.Location = new System.Drawing.Point(58, 17);
-            this.PassSerialTextBox.Name = "PassSerialTextBox";
-            this.PassSerialTextBox.Size = new System.Drawing.Size(64, 20);
-            this.PassSerialTextBox.TabIndex = 5;
+            this.PassSerialUpDown.Location = new System.Drawing.Point(58, 17);
+            this.PassSerialUpDown.Name = "PassSerialUpDown";
+            this.PassSerialUpDown.Size = new System.Drawing.Size(64, 20);
+            this.PassSerialUpDown.TabIndex = 5;
             // 
-            // RegAddressTextBox
+            // LocalAddressTextBox
             // 
-            this.RegAddressTextBox.Location = new System.Drawing.Point(137, 306);
-            this.RegAddressTextBox.Name = "RegAddressTextBox";
-            this.RegAddressTextBox.Size = new System.Drawing.Size(157, 20);
-            this.RegAddressTextBox.TabIndex = 11;
+            this.LocalAddressTextBox.Location = new System.Drawing.Point(137, 306);
+            this.LocalAddressTextBox.Name = "LocalAddressTextBox";
+            this.LocalAddressTextBox.Size = new System.Drawing.Size(157, 20);
+            this.LocalAddressTextBox.TabIndex = 11;
             // 
             // SexComboBox
             // 
@@ -197,9 +202,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(14, 309);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(114, 13);
+            this.label12.Size = new System.Drawing.Size(112, 13);
             this.label12.TabIndex = 25;
-            this.label12.Text = "Адрес регистрации : ";
+            this.label12.Text = "Адрес проживания : ";
             // 
             // SportCategoryTextBox
             // 
@@ -213,9 +218,10 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(14, 283);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(112, 13);
+            this.label11.Size = new System.Drawing.Size(114, 13);
             this.label11.TabIndex = 24;
-            this.label11.Text = "Адрес проживания : ";
+            this.label11.Text = "Адрес регистрации : ";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -231,8 +237,8 @@
             this.groupBox1.Controls.Add(this.PassCodeTextBox);
             this.groupBox1.Controls.Add(this.PassDateDatePicker);
             this.groupBox1.Controls.Add(this.PassLocationTextBox);
-            this.groupBox1.Controls.Add(this.PassNumberTextBox);
-            this.groupBox1.Controls.Add(this.PassSerialTextBox);
+            this.groupBox1.Controls.Add(this.PassNumberUpDown);
+            this.groupBox1.Controls.Add(this.PassSerialUpDown);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
@@ -299,6 +305,10 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "Имя : ";
             // 
+            // FormErrorProvider
+            // 
+            this.FormErrorProvider.ContainerControl = this;
+            // 
             // AddPlayerForm
             // 
             this.AcceptButton = this.SaveButton;
@@ -309,9 +319,9 @@
             this.Controls.Add(this.LastNameTextBox);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.AddressTextBox);
-            this.Controls.Add(this.MiddleNameTextBox);
             this.Controls.Add(this.RegAddressTextBox);
+            this.Controls.Add(this.MiddleNameTextBox);
+            this.Controls.Add(this.LocalAddressTextBox);
             this.Controls.Add(this.SexComboBox);
             this.Controls.Add(this.BirthDateDatePicker);
             this.Controls.Add(this.label13);
@@ -329,8 +339,11 @@
             this.Name = "AddPlayerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Регистрация участника";
+            ((System.ComponentModel.ISupportInitialize)(this.PassNumberUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PassSerialUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,11 +358,11 @@
         private System.Windows.Forms.TextBox LastNameTextBox;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox AddressTextBox;
-        private System.Windows.Forms.TextBox MiddleNameTextBox;
-        private System.Windows.Forms.TextBox PassNumberTextBox;
-        private System.Windows.Forms.TextBox PassSerialTextBox;
         private System.Windows.Forms.TextBox RegAddressTextBox;
+        private System.Windows.Forms.TextBox MiddleNameTextBox;
+        private System.Windows.Forms.NumericUpDown PassNumberUpDown;
+        private System.Windows.Forms.NumericUpDown PassSerialUpDown;
+        private System.Windows.Forms.TextBox LocalAddressTextBox;
         private System.Windows.Forms.ComboBox SexComboBox;
         private System.Windows.Forms.DateTimePicker BirthDateDatePicker;
         private System.Windows.Forms.Label label10;
@@ -366,5 +379,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ErrorProvider FormErrorProvider;
     }
 }

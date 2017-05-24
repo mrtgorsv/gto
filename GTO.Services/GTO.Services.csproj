@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Implementations\GtoEventService.cs" />
     <Compile Include="Implementations\JudgeService.cs" />
+    <Compile Include="Implementations\ReportService.cs" />
+    <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Implementations\PlayerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

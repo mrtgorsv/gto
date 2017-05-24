@@ -58,6 +58,9 @@
     <Compile Include="Context\AgeGroup.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\AgeGroupRequirment.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\GtoEvent.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +103,9 @@
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\TestGroup.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\User.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Enums\ResultRank.cs" />

@@ -76,9 +76,20 @@ namespace GTO.Presenters
         private void UpdateUsers()
         {
             EditableObject.GtoEventPlayers.Clear();
-            foreach (GtoEventPlayer player in EventPlayerDataSource)
+            foreach (var groupedPlayers in EventPlayerDataSource.GroupBy(ep=> ep.PlayerId))
             {
-                EditableObject.GtoEventPlayers.Add(player);
+                if (groupedPlayers.Key == 0) continue;
+
+                GtoEventPlayer eventPlayer;
+                if (groupedPlayers.Count() > 1)
+                {
+                    eventPlayer = groupedPlayers.FirstOrDefault(p => p.Id != 0) ?? groupedPlayers.First();
+                }
+                else
+                {
+                    eventPlayer = groupedPlayers.First();
+                }
+                EditableObject.GtoEventPlayers.Add(eventPlayer);
             }
         }
 

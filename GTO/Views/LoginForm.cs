@@ -1,52 +1,60 @@
 ﻿using System;
 using System.Windows.Forms;
+using GTO.Presenters;
 
 namespace GTO.Views
 {
     public partial class LoginForm : Form
     {
-        private MainForm formMain = new MainForm();
+        protected LoginPresenter CurrentPresenter { get; set; }
 
         public LoginForm()
         {
             InitializeComponent();
-            AddOwnedForm(formMain);
+            Load += OnFormLoad;
         }
 
-        const string aLogin = "GTO";
-        const string aPassword = "password";
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            CurrentPresenter = new LoginPresenter();
+        }
 
-        private void btnClose_Click(object sender, EventArgs e)
+
+        private void OnCloseClick(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void lblAbout_Click(object sender, EventArgs e)
+        private void OnAboutClick(object sender, EventArgs e)
         {
             AboutForm aForm = new AboutForm();
             aForm.ShowDialog(this);
             aForm.Dispose();
         }
 
-        private void btnEnter_Click(object sender, EventArgs e)
+        private void OnLoginClick(object sender, EventArgs e)
         {
-            if (txtLogin.Text != "" && txtPassword.Text != "")
+            string login = LoginTextBox.Text;
+            string password = PasswordTextBox.Text;
+
+            if (login == "" || password == "")
             {
-                if (txtLogin.Text == aLogin && txtPassword.Text == aPassword)
-                {
-                    Hide();
-                    formMain.ShowDialog();
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Логин/пароль пользователя не подтвержден!!!", "Сообщение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Введите логин/пароль пользователя!!!", "Сообщение...", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
             }
-            else
+
+            if (!CurrentPresenter.Login(LoginTextBox.Text, PasswordTextBox.Text))
             {
-                MessageBox.Show("Введите логин/пароль пользователя!!!", "Сообщение...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Логин/пароль пользователя не подтвержден!!!", "Сообщение...", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
             }
+
+            Hide();
+            MainForm mainForm = new MainForm();
+            mainForm.ShowDialog();
+            Close();
         }
     }
 }

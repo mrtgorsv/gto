@@ -216,7 +216,7 @@ namespace GTO.Presenters
         private ResultRank CheckDoubleResult(string record, TestGroup testGroup)
         {
             double result;
-            if (double.TryParse(record, out result))
+            if (double.TryParse(record, NumberStyles.Any , CultureInfo.InvariantCulture , out  result))
             {
                 if (!testGroup.Gold.HasValue || result <= testGroup.Gold)
                 {

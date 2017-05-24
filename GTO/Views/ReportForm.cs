@@ -20,16 +20,30 @@ namespace GTO.Views
             CurrentPresenter = new PlayerReportPresenter();
             PlayerComboBox.DisplayMember = "Text";
             PlayerComboBox.ValueMember = "Id";
+            PlayerComboBox.SelectedIndexChanged += OnPlayerChanged;
+
             PlayerComboBox.DataSource = CurrentPresenter.PlayerList;
-            ShowReportButton.Click += OnShowReportClick; 
+            ShowReportButton.Click += OnShowReportClick;
+        }
+
+        private void OnPlayerChanged(object sender, EventArgs e)
+        {
+            FileNameTextBox.Text = PlayerComboBox.Text;
         }
 
         private void OnShowReportClick(object sender, EventArgs e)
         {
-            if (PlayerComboBox.SelectedItem != null)
+            try
             {
-                var selectedValue = (ComboBoxItem) PlayerComboBox.SelectedValue;
-                CurrentPresenter.ShowReport(selectedValue.Value);
+                if (PlayerComboBox.SelectedItem != null)
+                {
+                    var selectedValue = (ComboBoxItem)PlayerComboBox.SelectedValue;
+                    CurrentPresenter.ShowReport(selectedValue.Value, FileNameTextBox.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK);
             }
         }
     }

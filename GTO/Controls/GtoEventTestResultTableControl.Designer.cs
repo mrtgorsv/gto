@@ -30,12 +30,12 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.GtoEventTestResultDataGrid = new System.Windows.Forms.DataGridView();
-            this.SaveButton = new System.Windows.Forms.Button();
             this.GtoEventPlayerColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GtoEventTestColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.GtoEventTestResultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GtoResultRankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GtoEventTestJudgeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GtoEventTestResultDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(500, 500);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -74,18 +74,8 @@
             this.GtoEventTestResultDataGrid.Name = "GtoEventTestResultDataGrid";
             this.GtoEventTestResultDataGrid.RowHeadersVisible = false;
             this.GtoEventTestResultDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.GtoEventTestResultDataGrid.Size = new System.Drawing.Size(494, 469);
+            this.GtoEventTestResultDataGrid.Size = new System.Drawing.Size(494, 464);
             this.GtoEventTestResultDataGrid.TabIndex = 0;
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SaveButton.Location = new System.Drawing.Point(253, 478);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(244, 19);
-            this.SaveButton.TabIndex = 1;
-            this.SaveButton.Text = "Сохранить";
-            this.SaveButton.UseVisualStyleBackColor = true;
             // 
             // GtoEventPlayerColumn
             // 
@@ -114,6 +104,16 @@
             this.GtoEventTestJudgeColumn.HeaderText = "Судья";
             this.GtoEventTestJudgeColumn.Name = "GtoEventTestJudgeColumn";
             this.GtoEventTestJudgeColumn.ReadOnly = true;
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SaveButton.Location = new System.Drawing.Point(253, 473);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(244, 24);
+            this.SaveButton.TabIndex = 1;
+            this.SaveButton.Text = "Сохранить";
+            this.SaveButton.UseVisualStyleBackColor = true;
             // 
             // GtoEventTestResultTableControl
             // 

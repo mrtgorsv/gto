@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Models\ComboBoxItem.cs" />
     <Compile Include="Models\GtoEventRecordLightModel.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\PlayerReportPresenter.cs" />
     <Compile Include="Presenters\GtoEventTestResultPresenter.cs" />
     <Compile Include="Presenters\GtoEventPresenter.cs" />

@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5bb559d48e3d41aa8ad734a841cb67a2" Name="Diagram1">
-        <EntityTypeShape EntityType="GtoContext.GtoEvent" Width="1.5" PointX="4.125" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.GtoEventPlayer" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.GtoEventPlayerRecord" Width="1.5" PointX="3.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.GtoEventTest" Width="1.5" PointX="6.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.Judge" Width="1.5" PointX="9.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.Player" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.Test" Width="1.5" PointX="6.625" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GtoContext.TestGroup" Width="1.5" PointX="6.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEvent" Width="1.5" PointX="0.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEventPlayer" Width="1.5" PointX="0.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEventPlayerRecord" Width="1.5" PointX="2.875" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.GtoEventTest" Width="1.5" PointX="2.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.Judge" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.Player" Width="1.5" PointX="0.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.Test" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GtoContext.TestGroup" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="GtoContext.FK_GtoEventPlayer_GtoEvent" ManuallyRouted="false" />
         <AssociationConnector Association="GtoContext.FK_GtoEventTest_GtoEvent" ManuallyRouted="false" />
         <AssociationConnector Association="GtoContext.FK_GtoEventPlayer_Player" ManuallyRouted="false" />
@@ -21,8 +21,11 @@
         <AssociationConnector Association="GtoContext.FK_GtoEventTest_Judge" ManuallyRouted="false" />
         <AssociationConnector Association="GtoContext.FK_GtoEventTest_Test" ManuallyRouted="false" />
         <AssociationConnector Association="GtoContext.FK_TestGroup_Test" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="GtoContext.AgeGroup" Width="1.5" PointX="3.375" PointY="6.875" />
+        <EntityTypeShape EntityType="GtoContext.AgeGroup" Width="1.5" PointX="7" PointY="0.5" />
         <AssociationConnector Association="GtoContext.FK_TestGroup_AgeGroup" />
+        <EntityTypeShape EntityType="GtoContext.AgeGroupRequirment" Width="1.5" PointX="9.125" PointY="0.5" />
+        <AssociationConnector Association="GtoContext.FK_AgeGroupRequirment_AgeGroup" />
+        <EntityTypeShape EntityType="GtoContext.User" Width="1.5" PointX="0.5" PointY="0.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
