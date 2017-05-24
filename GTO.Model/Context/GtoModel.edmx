@@ -36,6 +36,7 @@
           <Property Name="GtoEventPlayerId" Type="int" Nullable="false" />
           <Property Name="GtoEventTestId" Type="int" Nullable="false" />
           <Property Name="TestValue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ResultRank" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="GtoEventTest">
           <Key>
@@ -105,6 +106,7 @@
           <Property Name="Gold" Type="float" />
           <Property Name="Sex" Type="smallint" Nullable="false" />
           <Property Name="AgeGroupId" Type="int" Nullable="false" />
+          <Property Name="TestType" Type="smallint" Nullable="false" />
         </EntityType>
         <Association Name="FK_GtoEventPlayer_GtoEvent">
           <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
@@ -295,6 +297,7 @@
           <Property Name="TestValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="GtoEventPlayer" Relationship="Self.FK_GtoEventPlayerRecord_GtoEventPlayer" FromRole="GtoEventPlayerRecord" ToRole="GtoEventPlayer" />
           <NavigationProperty Name="GtoEventTest" Relationship="Self.FK_GtoEventPlayerRecord_GtoEventTest" FromRole="GtoEventPlayerRecord" ToRole="GtoEventTest" />
+          <Property Name="ResultRank" Type="GtoContext.ResultRank" Nullable="false" />
         </EntityType>
         <EntityType Name="GtoEventTest">
           <Key>
@@ -374,6 +377,7 @@
           <Property Name="Sex" Type="Int16" Nullable="false" />
           <Property Name="AgeGroupId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeGroup" Relationship="GtoContext.FK_TestGroup_AgeGroup" FromRole="TestGroup" ToRole="AgeGroup" />
+          <Property Name="TestType" Type="GtoContext.TestType" Nullable="false" />
         </EntityType>
         <Association Name="FK_GtoEventPlayer_GtoEvent">
           <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
@@ -539,6 +543,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="TestType" UnderlyingType="Int16" a:ExternalTypeName="GTO.Model.Enums.TestType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="ResultRank" UnderlyingType="Int16" a:ExternalTypeName="GTO.Model.Enums.ResultRank" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -565,6 +571,7 @@
           <EntitySetMapping Name="GtoEventPlayerRecords">
             <EntityTypeMapping TypeName="GtoContext.GtoEventPlayerRecord">
               <MappingFragment StoreEntitySet="GtoEventPlayerRecord">
+                <ScalarProperty Name="ResultRank" ColumnName="ResultRank" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GtoEventPlayerId" ColumnName="GtoEventPlayerId" />
                 <ScalarProperty Name="GtoEventTestId" ColumnName="GtoEventTestId" />
@@ -636,6 +643,7 @@
           <EntitySetMapping Name="TestGroups">
             <EntityTypeMapping TypeName="GtoContext.TestGroup">
               <MappingFragment StoreEntitySet="TestGroup">
+                <ScalarProperty Name="TestType" ColumnName="TestType" />
                 <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

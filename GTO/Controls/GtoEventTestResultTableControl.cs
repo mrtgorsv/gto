@@ -22,22 +22,23 @@ namespace GTO.Controls
 
         private void OnCellEditBegin(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            var cell = GtoEventTestResultDataGrid[e.ColumnIndex, e.RowIndex];
+            if (cell.OwningColumn.Name.Equals(GtoEventTestColumn.Name))
             {
-                
-                DataGridViewComboBoxCell gtoTestCell = GtoEventTestResultDataGrid[e.ColumnIndex, e.RowIndex] as DataGridViewComboBoxCell;
+                DataGridViewComboBoxCell gtoTestCell = cell as DataGridViewComboBoxCell;
                 if (gtoTestCell != null)
                 {
-                    if (gtoTestCell.Items.Count == 0)
+                    GtoEventPlayerRecord record = gtoTestCell.OwningRow.DataBoundItem as GtoEventPlayerRecord;
+                    var aviableTests = CurrentPresenter.GetAviableEventTests(record);
+                    if (gtoTestCell.Items.Count != aviableTests.Count)
                     {
                         gtoTestCell.DisplayMember = "Text";
                         gtoTestCell.ValueMember = "Value";
                         gtoTestCell.AutoComplete = true;
-                        GtoEventPlayerRecord record = gtoTestCell.OwningRow.DataBoundItem as GtoEventPlayerRecord;
-                        gtoTestCell.DataSource = new BindingSource(CurrentPresenter.GetAviableEventTests(record), null);
+                        gtoTestCell.DataSource = new BindingSource(aviableTests, null);
                     }
                 }
-            }
+            } 
         }
 
 
@@ -63,26 +64,45 @@ namespace GTO.Controls
             GtoEventTestColumn.DataPropertyName = "GtoEventTestId";
             GtoEventTestColumn.DisplayMember = "Text";
             GtoEventTestColumn.ValueMember = "Value";
+            GtoEventTestColumn.DataSource = CurrentPresenter.GtoEventTestDataSource;
 
             GtoEventTestJudgeColumn.DataPropertyName = "EventTestJudgeName";
             GtoEventPlayerColumn.DataPropertyName = "EventTestPlayerName";
+            GtoResultRankColumn.DataPropertyName = "ResultRankName";
+            GtoEventTestResultColumn.DataPropertyName = "TestValue";
+            
 
             GtoEventTestResultDataGrid.CellEndEdit += OnCellEditComplete;
         }
 
         private void OnCellEditComplete(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            try
             {
-                var column = GtoEventTestResultDataGrid[e.ColumnIndex , e.RowIndex];
-                var record = column.OwningRow.DataBoundItem as GtoEventPlayerRecord;
-                if (record != null)
+                var cell = GtoEventTestResultDataGrid[e.ColumnIndex, e.RowIndex];
+                var record = cell.OwningRow.DataBoundItem as GtoEventPlayerRecord;
+
+                if (record == null)
+                {
+                    return;
+                }
+
+                if (cell.OwningColumn.Name.Equals(GtoEventTestColumn.Name))
                 {
                     CurrentPresenter.UpdateRecordTest(record);
-                    GtoEventTestResultDataGrid.Update();
-                    GtoEventTestResultDataGrid.Refresh();
+                }
+                else if (cell.OwningColumn.Name.Equals(GtoEventTestResultColumn.Name))
+                {
+                    CurrentPresenter.UpdateRecordResult(record);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message , "Ошибка при внесении результата" , MessageBoxButtons.OK);
+            }
+
+            GtoEventTestResultDataGrid.Update();
+            GtoEventTestResultDataGrid.Refresh();
         }
 
         private void OnError(object sender, DataGridViewDataErrorEventArgs e)

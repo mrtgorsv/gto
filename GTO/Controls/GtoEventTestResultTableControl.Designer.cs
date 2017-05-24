@@ -34,7 +34,7 @@
             this.GtoEventPlayerColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GtoEventTestColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.GtoEventTestResultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ResultRankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GtoResultRankColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GtoEventTestJudgeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GtoEventTestResultDataGrid)).BeginInit();
@@ -66,7 +66,7 @@
             this.GtoEventPlayerColumn,
             this.GtoEventTestColumn,
             this.GtoEventTestResultColumn,
-            this.ResultRankColumn,
+            this.GtoResultRankColumn,
             this.GtoEventTestJudgeColumn});
             this.tableLayoutPanel1.SetColumnSpan(this.GtoEventTestResultDataGrid, 2);
             this.GtoEventTestResultDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -103,11 +103,11 @@
             this.GtoEventTestResultColumn.HeaderText = "Результат";
             this.GtoEventTestResultColumn.Name = "GtoEventTestResultColumn";
             // 
-            // ResultRankColumn
+            // GtoResultRankColumn
             // 
-            this.ResultRankColumn.HeaderText = "Медаль";
-            this.ResultRankColumn.Name = "ResultRankColumn";
-            this.ResultRankColumn.ReadOnly = true;
+            this.GtoResultRankColumn.HeaderText = "Медаль";
+            this.GtoResultRankColumn.Name = "GtoResultRankColumn";
+            this.GtoResultRankColumn.ReadOnly = true;
             // 
             // GtoEventTestJudgeColumn
             // 
@@ -136,7 +136,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GtoEventPlayerColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn GtoEventTestColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GtoEventTestResultColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ResultRankColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GtoResultRankColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GtoEventTestJudgeColumn;
     }
 }

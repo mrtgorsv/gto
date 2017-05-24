@@ -7,11 +7,6 @@ namespace GTO
 {
     public partial class MainForm : Form
     {
-
-        private GtoEventTestResultTableControl _eventResultView;
-        private GtoEventReportControl _eventReportView;
-        private GtoRegistrationEventTableControl _registrationEventView;
-
         public MainForm()
         {
             InitializeComponent();
@@ -64,8 +59,8 @@ namespace GTO
         private void btnReport_Click(object sender, EventArgs e)
         {
             ContentPanel.Controls.Clear();
-            var reportForm = new GtoEventReportControl { Dock = DockStyle.Fill };
-            ShowForm(reportForm);
+            var reportForm = new ReportForm();
+            reportForm.ShowDialog(this);
         }
 
         private void OnNeedClose(object sender, EventArgs args)

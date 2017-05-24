@@ -34,7 +34,7 @@ namespace GTO.Views
             {
                 if (txtLogin.Text == aLogin && txtPassword.Text == aPassword)
                 {
-                    this.Hide();
+                    Hide();
                     formMain.ShowDialog();
                     Close();
                 }

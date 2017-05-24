@@ -102,6 +102,8 @@
     <Compile Include="Context\TestGroup.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enums\ResultRank.cs" />
+    <Compile Include="Enums\TestType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
