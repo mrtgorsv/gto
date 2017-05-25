@@ -19,7 +19,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GoldCount" Type="smallint" Nullable="false" />
-          <Property Name="SerebroCount" Type="smallint" Nullable="false" />
+          <Property Name="SilverCount" Type="smallint" Nullable="false" />
           <Property Name="BronzeCount" Type="smallint" Nullable="false" />
           <Property Name="AgeGroupId" Type="int" Nullable="false" />
           <Property Name="Sex" Type="smallint" Nullable="false" />
@@ -113,7 +113,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TestId" Type="int" Nullable="false" />
           <Property Name="Bronze" Type="float" />
-          <Property Name="Serebro" Type="float" />
+          <Property Name="Silver" Type="float" />
           <Property Name="Gold" Type="float" />
           <Property Name="Sex" Type="smallint" Nullable="false" />
           <Property Name="AgeGroupId" Type="int" Nullable="false" />
@@ -408,13 +408,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TestId" Type="Int32" Nullable="false" />
           <Property Name="Bronze" Type="Double" />
-          <Property Name="Serebro" Type="Double" />
           <Property Name="Gold" Type="Double" />
           <NavigationProperty Name="Test" Relationship="Self.FK_TestGroup_Test" FromRole="TestGroup" ToRole="Test" />
           <Property Name="Sex" Type="Int16" Nullable="false" />
           <Property Name="AgeGroupId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeGroup" Relationship="GtoContext.FK_TestGroup_AgeGroup" FromRole="TestGroup" ToRole="AgeGroup" />
           <Property Name="TestType" Type="GtoContext.TestType" Nullable="false" />
+          <Property Name="Silver" Type="Double" />
         </EntityType>
         <Association Name="FK_GtoEventPlayer_GtoEvent">
           <End Role="GtoEvent" Type="Self.GtoEvent" Multiplicity="1" />
@@ -595,11 +595,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GoldCount" Type="Int16" Nullable="false" />
-          <Property Name="SerebroCount" Type="Int16" Nullable="false" />
           <Property Name="BronzeCount" Type="Int16" Nullable="false" />
           <Property Name="AgeGroupId" Type="Int32" Nullable="false" />
           <Property Name="Sex" Type="Int16" Nullable="false" />
           <NavigationProperty Name="AgeGroup" Relationship="GtoContext.FK_AgeGroupRequirment_AgeGroup" FromRole="AgeGroupRequirment" ToRole="AgeGroup" />
+          <Property Name="SilverCount" Type="Int16" Nullable="false" />
         </EntityType>
         <Association Name="FK_AgeGroupRequirment_AgeGroup">
           <End Type="GtoContext.AgeGroup" Role="AgeGroup" Multiplicity="1" />
@@ -719,13 +719,13 @@
           <EntitySetMapping Name="TestGroups">
             <EntityTypeMapping TypeName="GtoContext.TestGroup">
               <MappingFragment StoreEntitySet="TestGroup">
+                <ScalarProperty Name="Silver" ColumnName="Silver" />
                 <ScalarProperty Name="TestType" ColumnName="TestType" />
                 <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TestId" ColumnName="TestId" />
                 <ScalarProperty Name="Bronze" ColumnName="Bronze" />
-                <ScalarProperty Name="Serebro" ColumnName="Serebro" />
                 <ScalarProperty Name="Gold" ColumnName="Gold" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -742,10 +742,10 @@
           <EntitySetMapping Name="AgeGroupRequirments">
             <EntityTypeMapping TypeName="GtoContext.AgeGroupRequirment">
               <MappingFragment StoreEntitySet="AgeGroupRequirment">
+                <ScalarProperty Name="SilverCount" ColumnName="SilverCount" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="AgeGroupId" ColumnName="AgeGroupId" />
                 <ScalarProperty Name="BronzeCount" ColumnName="BronzeCount" />
-                <ScalarProperty Name="SerebroCount" ColumnName="SerebroCount" />
                 <ScalarProperty Name="GoldCount" ColumnName="GoldCount" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

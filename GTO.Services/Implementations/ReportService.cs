@@ -86,7 +86,7 @@ namespace GTO.Services.Implementations
                 {
                     return "золото";
                 }
-                if (ageGroupRequirment.SerebroCount <= completeCount)
+                if (ageGroupRequirment.SilverCount <= completeCount)
                 {
                     return "серебро";
                 }
