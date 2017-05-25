@@ -123,6 +123,13 @@
       <DependentUpon>GtoModel.edmx</DependentUpon>
       <LastGenOutput>GtoModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Database.12.0\GtoDatabase.ldf">
+      <DependentUpon>GtoDatabase.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Database.12.0\GtoDatabase.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Database\GtoDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
