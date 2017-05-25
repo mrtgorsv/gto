@@ -18,27 +18,6 @@ namespace GTO.Services.Implementations
             return gtoEvent;
         }
 
-        private GtoEventPlayer CreateNewEventPlayer(int? id)
-        {
-            var gtoEventPlayer = _context.GtoEventPlayers.Create();
-
-            if (id.HasValue)
-            {
-                gtoEventPlayer.PlayerId = id.Value;
-            }
-            return gtoEventPlayer;
-        }
-
-        private GtoEventTest CreateNewGtoEventTest(int? id)
-        {
-            var gtoEventTest = _context.GtoEventTests.Create();
-            if (id.HasValue)
-            {
-                gtoEventTest.TestId = id.Value;
-            }
-            return gtoEventTest;
-        }
-
         public void Add(GtoEvent gtoEvent)
         {
             _context.GtoEvents.Add(gtoEvent);

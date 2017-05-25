@@ -4,10 +4,7 @@ namespace GTO.Model.Context
 {
     public partial class Player
     {
-        public string FullName
-        {
-            get { return string.Format("{0} {1} {2}({3:D4}-{4:D6})", LastName, MiddleName, Name, PassSerial, PassNumber); }
-        }
+        public string FullName => $"{LastName} {MiddleName} {Name}({PassSerial:D4}-{PassNumber:D6})";
 
         public int Age
         {

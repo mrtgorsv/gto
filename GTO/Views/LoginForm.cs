@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using GTO.Presenters;
+using GTO.Properties;
 
 namespace GTO.Views
 {
@@ -39,14 +40,14 @@ namespace GTO.Views
 
             if (login == "" || password == "")
             {
-                MessageBox.Show("Введите логин/пароль пользователя!!!", "Сообщение...", MessageBoxButtons.OK,
+                MessageBox.Show(Resources.EmptyLoginOrPasswordErrorMessage, Resources.TitleMessage, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
             }
 
             if (!CurrentPresenter.Login(LoginTextBox.Text, PasswordTextBox.Text))
             {
-                MessageBox.Show("Логин/пароль пользователя не подтвержден!!!", "Сообщение...", MessageBoxButtons.OK,
+                MessageBox.Show(Resources.LoginFaliedMessage, Resources.TitleMessage, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
             }

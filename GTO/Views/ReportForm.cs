@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using GTO.Models;
 using GTO.Presenters;
+using GTO.Properties;
 
 namespace GTO.Views
 {
@@ -43,7 +44,7 @@ namespace GTO.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "Ошибка", MessageBoxButtons.OK);
+                MessageBox.Show(this, ex.Message, Resources.ErrorTitleMessage, MessageBoxButtons.OK);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using GTO.Presenters;
+using GTO.Properties;
 
 namespace GTO.Views
 {
@@ -76,7 +77,7 @@ namespace GTO.Views
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, "Ошибка при сохранении:" + exception.Message, "Ошибка", MessageBoxButtons.OK);
+                MessageBox.Show(this, Resources.SaveErrorMessage + exception.Message, Resources.ErrorTitleMessage, MessageBoxButtons.OK);
             }
         }
 

@@ -12,12 +12,12 @@ namespace GTO.Presenters
 {
     public class GtoEventTestResultPresenter : IDisposable
     {
-        private GtoEvent _currentEvent;
+        private readonly GtoEvent _currentEvent;
 
         private readonly GtoEventService _gtoEventService;
 
         private BindingList<GtoEventPlayerRecord> _gtoEventPlayerRecords;
-        private List<AgeGroup> _aviableAgeGroups;
+        private readonly List<AgeGroup> _aviableAgeGroups;
 
         public GtoEventTestResultPresenter()
         {
@@ -34,10 +34,7 @@ namespace GTO.Presenters
             _gtoEventPlayerRecords = new BindingList<GtoEventPlayerRecord>(_gtoEventService.GetCurrentEventRecords());
         }
 
-        public BindingList<GtoEventPlayerRecord> EventPlayerRecordDataSource
-        {
-            get { return _gtoEventPlayerRecords; }
-        }
+        public BindingList<GtoEventPlayerRecord> EventPlayerRecordDataSource => _gtoEventPlayerRecords;
 
         public List<ComboBoxItem> GtoEventTestDataSource
         {
@@ -126,12 +123,10 @@ namespace GTO.Presenters
                         record.ResultRank = CheckIntResult(record.TestValue, testGroup);
                         break;
                     case TestType.BoolValue:
-                        record.ResultRank = CheckBoolResult(record.TestValue, testGroup);
+                        record.ResultRank = CheckBoolResult(record.TestValue);
                         break;
                     case TestType.TimeValue:
                         record.ResultRank = CheckTimeResult(record.TestValue, testGroup);
-                        break;
-                    default:
                         break;
                 }
             }
@@ -173,7 +168,7 @@ namespace GTO.Presenters
             return ResultRank.NoRank;
         }
 
-        private ResultRank CheckBoolResult(string record, TestGroup testGroup)
+        private ResultRank CheckBoolResult(string record)
         {
             bool result;
             if (bool.TryParse(record, out result))

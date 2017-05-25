@@ -2,9 +2,6 @@
 {
     public partial class GtoEventPlayer
     {
-        public string PlayerName
-        {
-            get { return Player != null ?Player.FullName : string.Empty; }
-        }
+        public string PlayerName => Player != null ?Player.FullName : string.Empty;
     }
 }

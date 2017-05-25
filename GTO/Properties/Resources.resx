@@ -127,4 +127,22 @@
   <data name="SaveException" xml:space="preserve">
     <value>Ошибка сохранения</value>
   </data>
+  <data name="EmptyLoginOrPasswordErrorMessage" xml:space="preserve">
+    <value>Введите логин/пароль пользователя!!!</value>
+  </data>
+  <data name="TitleMessage" xml:space="preserve">
+    <value>Сообщение...</value>
+  </data>
+  <data name="LoginFaliedMessage" xml:space="preserve">
+    <value>Логин/пароль пользователя не подтвержден!!!</value>
+  </data>
+  <data name="ErrorTitleMessage" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="SaveErrorMessage" xml:space="preserve">
+    <value>Ошибка при сохранении:</value>
+  </data>
+  <data name="InputErrorMessage" xml:space="preserve">
+    <value>Ошибка при внесении результата</value>
+  </data>
 </root>

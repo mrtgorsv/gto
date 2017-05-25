@@ -21,17 +21,11 @@ namespace GTO.Presenters
         {
             PlayerService.Add(EditableObject);
         }
-        public List<ComboBoxItem> SexList
+        public List<ComboBoxItem> SexList => new List<ComboBoxItem>
         {
-            get
-            {
-                return new List<ComboBoxItem>
-                {
-                    new ComboBoxItem {Text = "Мужской" , Value = 0},
-                    new ComboBoxItem {Text = "Женский" , Value = 1}
-                };
-            }
-        }
+            new ComboBoxItem {Text = "Мужской" , Value = 0},
+            new ComboBoxItem {Text = "Женский" , Value = 1}
+        };
 
         public void Dispose()
         {

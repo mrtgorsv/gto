@@ -7,7 +7,7 @@ namespace GTO.Services.Implementations
 {
     public class JudgeService : IDisposable
     {
-        GtoDatabaseContext _context = new GtoDatabaseContext();
+        readonly GtoDatabaseContext _context = new GtoDatabaseContext();
 
         public Judge Create()
         {

@@ -98,7 +98,7 @@ namespace GTO.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message , "Ошибка при внесении результата" , MessageBoxButtons.OK);
+                MessageBox.Show(this, ex.Message , Resources.InputErrorMessage , MessageBoxButtons.OK);
             }
 
             GtoEventTestResultDataGrid.Update();

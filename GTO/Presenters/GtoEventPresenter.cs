@@ -31,15 +31,9 @@ namespace GTO.Presenters
             InitPlayers();
         }
 
-        public BindingList<GtoEventPlayer> EventPlayerDataSource
-        {
-            get { return _eventPlayers ?? (_eventPlayers = GetEvenPlayers()); }
-        }
+        public BindingList<GtoEventPlayer> EventPlayerDataSource => _eventPlayers ?? (_eventPlayers = GetEvenPlayers());
 
-        public BindingList<GtoEventTest> EventTestDataSource
-        {
-            get { return _eventTests ?? (_eventTests = GetEventTests()); }
-        }
+        public BindingList<GtoEventTest> EventTestDataSource => _eventTests ?? (_eventTests = GetEventTests());
 
         public List<ComboBoxItem> JudgeList
         {

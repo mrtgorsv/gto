@@ -103,7 +103,7 @@ namespace GTO.Services.Implementations
         {
             using (var workbook =
                 SpreadsheetDocument.Create(
-                    System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format("{0}.xlsx", fileName)),
+                    System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{fileName}.xlsx"),
                     DocumentFormat.OpenXml.SpreadsheetDocumentType.Workbook))
             {
                 var workbookPart = workbook.AddWorkbookPart();
