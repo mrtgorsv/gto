@@ -10,7 +10,7 @@ using GTO.Services.Implementations;
 
 namespace GTO.Presenters
 {
-    public class GtoEventTestResultPresenter : IDisposable
+    public class GtoEventTestResultPresenter : EditPresenterBase
     {
         private readonly GtoEvent _currentEvent;
 
@@ -47,17 +47,6 @@ namespace GTO.Presenters
                     })
                     .ToList();
             }
-        }
-
-
-        public void Save()
-        {
-            _gtoEventService.SaveEventRecords(EventPlayerRecordDataSource.ToList());
-        }
-
-        public void Dispose()
-        {
-            _gtoEventService.Dispose();
         }
 
         public List<ComboBoxItem> GetAviableEventTests(GtoEventPlayerRecord record)
@@ -228,6 +217,16 @@ namespace GTO.Presenters
                 return ResultRank.NoRank;
             }
             throw new ArgumentException("Некорректное значение. Доступные значения : числа типа '00.00'");
+        }
+
+        public override void Save()
+        {
+            _gtoEventService.SaveEventRecords(EventPlayerRecordDataSource.ToList());
+        }
+
+        public override void Dispose()
+        {
+            _gtoEventService.Dispose();
         }
     }
 

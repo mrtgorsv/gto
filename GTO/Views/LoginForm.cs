@@ -45,7 +45,7 @@ namespace GTO.Views
                 return;
             }
 
-            if (!CurrentPresenter.Login(LoginTextBox.Text, PasswordTextBox.Text))
+            if (!CurrentPresenter.Login(login, password))
             {
                 MessageBox.Show(Resources.LoginFaliedMessage, Resources.TitleMessage, MessageBoxButtons.OK,
                     MessageBoxIcon.Information);

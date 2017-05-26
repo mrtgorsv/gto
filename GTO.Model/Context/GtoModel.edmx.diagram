@@ -25,7 +25,9 @@
         <AssociationConnector Association="GtoContext.FK_TestGroup_AgeGroup" />
         <EntityTypeShape EntityType="GtoContext.AgeGroupRequirment" Width="1.5" PointX="9.125" PointY="0.5" />
         <AssociationConnector Association="GtoContext.FK_AgeGroupRequirment_AgeGroup" />
-        <EntityTypeShape EntityType="GtoContext.User" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="GtoContext.User" Width="1.5" PointX="8.75" PointY="4.375" />
+        <EntityTypeShape EntityType="GtoContext.Role" Width="1.5" PointX="11.625" PointY="4.375" />
+        <AssociationConnector Association="GtoContext.FK_User_ToRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

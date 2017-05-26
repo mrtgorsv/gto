@@ -99,6 +99,9 @@
     <Compile Include="Context\Player.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\Role.cs">
+      <DependentUpon>GtoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\Test.cs">
       <DependentUpon>GtoModel.tt</DependentUpon>
     </Compile>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using GTO.Model.Context;
 
@@ -19,9 +20,16 @@ namespace GTO.Services.Implementations
             return _context.Players.ToList();
         }
 
-        public void Add(Player player)
+        public void AddOrUpdate(Player player)
         {
-            _context.Players.Add(player);
+            if (player.Id > 0)
+            {
+                _context.Entry(player).State = EntityState.Modified;
+            }
+            else
+            {
+                _context.Players.Add(player);
+            }
             _context.SaveChanges();
         }
 
@@ -29,6 +37,19 @@ namespace GTO.Services.Implementations
         {
             _context?.Dispose();
         }
-    }
 
+        public Player GetOrCreate(int playerId)
+        {
+            return _context.Players.Find(playerId) ?? Create();
+        }
+
+        public void Refresh(int entityId)
+        {
+            var refreshEntity = _context.Players.Find(entityId);
+            if (refreshEntity != null)
+            {
+                _context.Entry(refreshEntity).Reload();
+            }
+        }
+    }
 }

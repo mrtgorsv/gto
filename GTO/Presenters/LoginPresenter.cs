@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GTO.Models;
 using GTO.Services.Implementations;
+using GTO.Utils;
 
 namespace GTO.Presenters
 {
@@ -16,7 +17,18 @@ namespace GTO.Presenters
 
         public bool Login( string login , string password)
         {
-            return _userService.CheckLogin(login, password);
+
+            if (_userService.CheckLogin(login, password))
+            {
+                var user = _userService.GetByLogin(login);
+
+                CurrentPrincipal.Instance.Id = user.Id;
+                CurrentPrincipal.Instance.Login = user.Login;
+                CurrentPrincipal.Instance.IsAdmin = user.Role != null && user.Role.IsAdmin;
+                return true;
+            }
+            return false;
+
         }
 
         public List<ComboBoxItem> SexList => new List<ComboBoxItem>

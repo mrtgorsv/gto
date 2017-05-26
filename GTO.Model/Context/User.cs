@@ -17,5 +17,8 @@ namespace GTO.Model.Context
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public Nullable<int> RoleId { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
 }

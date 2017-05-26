@@ -96,6 +96,14 @@
           <Property Name="RegistrationAddress" Type="nvarchar(max)" Nullable="false" />
           <Property Name="SportCategory" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Test">
           <Key>
             <PropertyRef Name="Id" />
@@ -126,6 +134,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
         </EntityType>
         <Association Name="FK_AgeGroupRequirment_AgeGroup">
           <End Role="AgeGroup" Type="Self.AgeGroup" Multiplicity="1" />
@@ -247,6 +256,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_ToRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GtoContextStoreContainer">
           <EntitySet Name="AgeGroup" EntityType="Self.AgeGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AgeGroupRequirment" EntityType="Self.AgeGroupRequirment" Schema="dbo" store:Type="Tables" />
@@ -256,6 +277,7 @@
           <EntitySet Name="GtoEventTest" EntityType="Self.GtoEventTest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Judge" EntityType="Self.Judge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestGroup" EntityType="Self.TestGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -298,6 +320,10 @@
           <AssociationSet Name="FK_TestGroup_Test" Association="Self.FK_TestGroup_Test">
             <End Role="Test" EntitySet="Test" />
             <End Role="TestGroup" EntitySet="TestGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ToRole" Association="Self.FK_User_ToRole">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -564,6 +590,11 @@
             <End Role="AgeGroupRequirment" EntitySet="AgeGroupRequirments" />
           </AssociationSet>
           <EntitySet Name="Users" EntityType="GtoContext.User" />
+          <EntitySet Name="Roles" EntityType="GtoContext.Role" />
+          <AssociationSet Name="FK_User_ToRole" Association="GtoContext.FK_User_ToRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AgeGroup">
           <Key>
@@ -620,7 +651,30 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="GtoContext.FK_User_ToRole" FromRole="User" ToRole="Role" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="GtoContext.FK_User_ToRole" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_User_ToRole">
+          <End Type="GtoContext.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="GtoContext.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -754,8 +808,18 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="GtoContext.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="GtoContext.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

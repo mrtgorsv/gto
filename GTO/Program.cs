@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using GTO.Utils;
 using GTO.Views;
 
 namespace GTO
@@ -14,6 +15,7 @@ namespace GTO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            CurrentPrincipal.Instance = new CurrentPrincipal();
             Application.Run(new LoginForm());
         }
     }

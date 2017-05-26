@@ -30,90 +30,88 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.регистрацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAddPlayer = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAddJudge = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnTable = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnCompetition = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegistrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddPlayerMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddJudgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GtoEventTestMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GtoEventMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel = new System.Windows.Forms.Panel();
+            this.AdminMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlayerMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.JudgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.регистрацияToolStripMenuItem,
-            this.btnTable,
-            this.btnCompetition,
-            this.btnReport,
-            this.btnAbout,
-            this.btnClose});
+            this.RegistrationToolStripMenuItem,
+            this.GtoEventTestMenuItem,
+            this.GtoEventMenuItem,
+            this.ReportMenuItem,
+            this.AboutMenuItem,
+            this.CloseMenuItem,
+            this.AdminMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(749, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // регистрацияToolStripMenuItem
+            // RegistrationToolStripMenuItem
             // 
-            this.регистрацияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddPlayer,
-            this.btnAddJudge});
-            this.регистрацияToolStripMenuItem.Name = "регистрацияToolStripMenuItem";
-            this.регистрацияToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.регистрацияToolStripMenuItem.Text = "Регистрация";
+            this.RegistrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddPlayerMenuItem,
+            this.AddJudgeMenuItem});
+            this.RegistrationToolStripMenuItem.Name = "RegistrationToolStripMenuItem";
+            this.RegistrationToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.RegistrationToolStripMenuItem.Text = "Регистрация";
             // 
-            // btnAddPlayer
+            // AddPlayerMenuItem
             // 
-            this.btnAddPlayer.Name = "btnAddPlayer";
-            this.btnAddPlayer.Size = new System.Drawing.Size(125, 22);
-            this.btnAddPlayer.Text = "Участник";
-            this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
+            this.AddPlayerMenuItem.Name = "AddPlayerMenuItem";
+            this.AddPlayerMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.AddPlayerMenuItem.Text = "Участник";
             // 
-            // btnAddJudge
+            // AddJudgeMenuItem
             // 
-            this.btnAddJudge.Name = "btnAddJudge";
-            this.btnAddJudge.Size = new System.Drawing.Size(125, 22);
-            this.btnAddJudge.Text = "Судья";
-            this.btnAddJudge.Click += new System.EventHandler(this.btnAddJudge_Click);
+            this.AddJudgeMenuItem.Name = "AddJudgeMenuItem";
+            this.AddJudgeMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.AddJudgeMenuItem.Text = "Судья";
             // 
-            // btnTable
+            // GtoEventTestMenuItem
             // 
-            this.btnTable.Name = "btnTable";
-            this.btnTable.Size = new System.Drawing.Size(66, 20);
-            this.btnTable.Text = "Таблица";
-            this.btnTable.Click += new System.EventHandler(this.btnTable_Click);
+            this.GtoEventTestMenuItem.Name = "GtoEventTestMenuItem";
+            this.GtoEventTestMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.GtoEventTestMenuItem.Text = "Таблица";
             // 
-            // btnCompetition
+            // GtoEventMenuItem
             // 
-            this.btnCompetition.Name = "btnCompetition";
-            this.btnCompetition.Size = new System.Drawing.Size(116, 20);
-            this.btnCompetition.Text = "К соревнованиям";
-            this.btnCompetition.Click += new System.EventHandler(this.btnCompetition_Click);
+            this.GtoEventMenuItem.Name = "GtoEventMenuItem";
+            this.GtoEventMenuItem.Size = new System.Drawing.Size(116, 20);
+            this.GtoEventMenuItem.Text = "К соревнованиям";
             // 
-            // btnReport
+            // ReportMenuItem
             // 
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(51, 20);
-            this.btnReport.Text = "Отчет";
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            this.ReportMenuItem.Name = "ReportMenuItem";
+            this.ReportMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.ReportMenuItem.Text = "Отчет";
             // 
-            // btnAbout
+            // AboutMenuItem
             // 
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(94, 20);
-            this.btnAbout.Text = "О программе";
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.AboutMenuItem.Text = "О программе";
             // 
-            // btnClose
+            // CloseMenuItem
             // 
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(53, 20);
-            this.btnClose.Text = "Выход";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.CloseMenuItem.Name = "CloseMenuItem";
+            this.CloseMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.CloseMenuItem.Text = "Выход";
             // 
             // ContentPanel
             // 
@@ -124,6 +122,35 @@
             this.ContentPanel.Name = "ContentPanel";
             this.ContentPanel.Size = new System.Drawing.Size(749, 466);
             this.ContentPanel.TabIndex = 1;
+            // 
+            // AdminMenu
+            // 
+            this.AdminMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UserMenuItem,
+            this.PlayerMenuItem,
+            this.JudgeMenuItem});
+            this.AdminMenu.Name = "AdminMenu";
+            this.AdminMenu.Size = new System.Drawing.Size(134, 20);
+            this.AdminMenu.Text = "Администрирование";
+            this.AdminMenu.Visible = false;
+            // 
+            // UserMenuItem
+            // 
+            this.UserMenuItem.Name = "UserMenuItem";
+            this.UserMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.UserMenuItem.Text = "Пользователи";
+            // 
+            // PlayerMenuItem
+            // 
+            this.PlayerMenuItem.Name = "PlayerMenuItem";
+            this.PlayerMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.PlayerMenuItem.Text = "Участники";
+            // 
+            // JudgeMenuItem
+            // 
+            this.JudgeMenuItem.Name = "JudgeMenuItem";
+            this.JudgeMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.JudgeMenuItem.Text = "Судьи";
             // 
             // MainForm
             // 
@@ -139,7 +166,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GTO";
-            this.Load += new System.EventHandler(this.OnLoad);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -150,14 +176,18 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem регистрацияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem btnAddPlayer;
-        private System.Windows.Forms.ToolStripMenuItem btnAddJudge;
-        private System.Windows.Forms.ToolStripMenuItem btnTable;
-        private System.Windows.Forms.ToolStripMenuItem btnCompetition;
-        private System.Windows.Forms.ToolStripMenuItem btnReport;
-        private System.Windows.Forms.ToolStripMenuItem btnAbout;
-        private System.Windows.Forms.ToolStripMenuItem btnClose;
+        private System.Windows.Forms.ToolStripMenuItem RegistrationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddPlayerMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddJudgeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GtoEventTestMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GtoEventMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CloseMenuItem;
         private System.Windows.Forms.Panel ContentPanel;
+        private System.Windows.Forms.ToolStripMenuItem AdminMenu;
+        private System.Windows.Forms.ToolStripMenuItem UserMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PlayerMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem JudgeMenuItem;
     }
 }

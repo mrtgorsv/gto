@@ -36,5 +36,6 @@ namespace GTO.Model.Context
         public virtual DbSet<AgeGroup> AgeGroups { get; set; }
         public virtual DbSet<AgeGroupRequirment> AgeGroupRequirments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using GTO.Model.Context;
@@ -8,7 +7,7 @@ using GTO.Services.Implementations;
 
 namespace GTO.Presenters
 {
-    public class GtoEventPresenter : IDisposable
+    public class GtoEventPresenter : EditPresenterBase
     {
         public GtoEvent EditableObject { get; set; }
 
@@ -61,12 +60,6 @@ namespace GTO.Presenters
             }
         }
 
-        public void Save()
-        {
-            UpdateUsers();
-            _gtoEventService.AddOrUpdate(EditableObject);
-        }
-
         private void UpdateUsers()
         {
             EditableObject.GtoEventPlayers.Clear();
@@ -85,11 +78,6 @@ namespace GTO.Presenters
                 }
                 EditableObject.GtoEventPlayers.Add(eventPlayer);
             }
-        }
-
-        public void Dispose()
-        {
-            _gtoEventService.Dispose();
         }
 
         private void InitPlayers()
@@ -111,6 +99,17 @@ namespace GTO.Presenters
         private BindingList<GtoEventPlayer> GetEvenPlayers()
         {
             return new BindingList<GtoEventPlayer>(EditableObject.GtoEventPlayers.ToList());
+        }
+
+        public override void Dispose()
+        {
+            _gtoEventService.Dispose();
+        }
+
+        public override void Save()
+        {
+            UpdateUsers();
+            _gtoEventService.AddOrUpdate(EditableObject);
         }
     }
 }

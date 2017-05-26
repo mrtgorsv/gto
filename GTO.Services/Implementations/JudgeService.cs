@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using GTO.Model.Context;
 
@@ -14,9 +15,16 @@ namespace GTO.Services.Implementations
             return _context.Judges.Create();
         }
 
-        public void Add(Judge judge)
+        public void AddOrUpdate(Judge judge)
         {
-            _context.Judges.Add(judge);
+            if (judge.Id > 0)
+            {
+                _context.Entry(judge).State = EntityState.Modified;
+            }
+            else
+            {
+                _context.Judges.Add(judge);
+            }
             _context.SaveChanges();
         }
 
@@ -25,9 +33,23 @@ namespace GTO.Services.Implementations
             return _context.Judges.ToList();
         }
 
+        public Judge GetOrCreate(int judgeId)
+        {
+            return _context.Judges.Find(judgeId) ?? Create();
+        }
+
         public void Dispose()
         {
             _context?.Dispose();
+        }
+
+        public void Refresh(int entityId)
+        {
+            var refreshEntity = _context.Judges.Find(entityId);
+            if (refreshEntity != null)
+            {
+                _context.Entry(refreshEntity).Reload();
+            }
         }
     }
 }
