@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using GTO.Model.Context;
@@ -64,7 +65,8 @@ namespace GTO.Services.Implementations
 
             var completedTestIds = results.Select(r => r.TestId).ToList();
 
-            var notCompleted = playerAgeGroup.TestGroups.Where(tg => !completedTestIds.Contains(tg.TestId) && (tg.Sex == selectedPlayer.Sex || tg.Sex == 2))
+            var notCompleted = playerAgeGroup.TestGroups
+                .Where(tg => !completedTestIds.Contains(tg.TestId) && (tg.Sex == selectedPlayer.Sex || tg.Sex == 2))
                 .Select(tg => new PlayerTestInfo
                 {
                     TestName = tg.Test.Name,
@@ -73,7 +75,9 @@ namespace GTO.Services.Implementations
                 })
                 .ToList();
 
-            string medalName = ComputeGtoMedal(playerAgeGroup.AgeGroupRequirments.FirstOrDefault(agr=> agr.Sex == selectedPlayer.Sex || agr.Sex == 2) , completedTestIds.Count);
+            string medalName = ComputeGtoMedal(
+                playerAgeGroup.AgeGroupRequirments.FirstOrDefault(agr => agr.Sex == selectedPlayer.Sex || agr.Sex == 2),
+                completedTestIds.Count);
 
             Export(selectedPlayer.FullName, results, notCompleted, fileName, medalName);
         }
@@ -99,7 +103,8 @@ namespace GTO.Services.Implementations
             return "без медали";
         }
 
-        private void Export(string fullName, List<PlayerTestInfo> results, List<PlayerTestInfo> requiredTests, string fileName, string medalName)
+        private void Export(string fullName, List<PlayerTestInfo> results, List<PlayerTestInfo> requiredTests,
+            string fileName, string medalName)
         {
             using (var workbook =
                 SpreadsheetDocument.Create(
@@ -114,8 +119,9 @@ namespace GTO.Services.Implementations
                 };
 
                 var sheetPart = workbook.WorkbookPart.AddNewPart<WorksheetPart>();
+
                 var sheetData = new SheetData();
-                sheetPart.Worksheet = new Worksheet(sheetData);
+                sheetPart.Worksheet = new Worksheet();
 
                 Sheets sheets = workbook.WorkbookPart.Workbook.GetFirstChild<Sheets>();
                 string relationshipId = workbook.WorkbookPart.GetIdOfPart(sheetPart);
@@ -141,23 +147,33 @@ namespace GTO.Services.Implementations
 
                 bool nameAdded = false;
 
-                foreach (var result in results)
+                if (!results.Any())
                 {
                     Row newRow = new Row();
-                    if (!nameAdded)
-                    {
-                        CreateCell(fullName, newRow);
-                        nameAdded = true;
-                    }
-                    else
-                    {
-                        CreateCell(string.Empty, newRow);
-                    }
-                    CreateCell(result.TestName, newRow);
-                    CreateCell(result.RankName, newRow);
-                    CreateCell(result.Required ? "Да" : "Нет", newRow);
+                    CreateCell(fullName, newRow);
                     sheetData.AppendChild(newRow);
                 }
+                else
+                {
+                    foreach (var result in results)
+                    {
+                        Row newRow = new Row();
+                        if (!nameAdded)
+                        {
+                            CreateCell(fullName, newRow);
+                            nameAdded = true;
+                        }
+                        else
+                        {
+                            CreateCell(string.Empty, newRow);
+                        }
+                        CreateCell(result.TestName, newRow);
+                        CreateCell(result.RankName, newRow);
+                        CreateCell(result.Required ? "Да" : "Нет", newRow);
+                        sheetData.AppendChild(newRow);
+                    }
+                }
+
 
                 sheetData.AppendChild(new Row());
 
@@ -175,8 +191,12 @@ namespace GTO.Services.Implementations
                     CreateCell(requiredTest.Required ? "Да" : "Нет", newRow);
                     sheetData.AppendChild(newRow);
                 }
-
                 AddGtoResult(sheetData, medalName);
+
+
+                sheetPart.Worksheet.Append(AutoSize(sheetData));
+
+                sheetPart.Worksheet.Append(sheetData);
             }
 
             Process.Start(AppDomain.CurrentDomain.BaseDirectory);
@@ -199,6 +219,80 @@ namespace GTO.Services.Implementations
                 CellValue = new CellValue(value)
             };
             header.AppendChild(cell);
+        }
+
+        private Columns AutoSize(SheetData sheetData)
+        {
+            var maxColWidth = GetMaxCharacterWidth(sheetData);
+
+            Columns columns = new Columns();
+            const double maxWidth = 7;
+            foreach (var item in maxColWidth)
+            {
+                var width = Math.Truncate((item.Value * maxWidth + 15) / maxWidth * 256) / 256;
+
+                Column col = new Column
+                {
+                    BestFit = true,
+                    Min = (uint) (item.Key + 1),
+                    Max = (uint) (item.Key + 1),
+                    CustomWidth = true,
+                    Width = width
+                };
+                columns.Append(col);
+            }
+
+            return columns;
+        }
+
+        private static Dictionary<int, int> GetMaxCharacterWidth(SheetData sheetData)
+        {
+            //iterate over all cells getting a max char value for each column
+            Dictionary<int, int> maxColWidth = new Dictionary<int, int>();
+            var rows = sheetData.Elements<Row>();
+            UInt32[] numberStyles = {5, 6, 7, 8}; //styles that will add extra chars
+            UInt32[] boldStyles = {1, 2, 3, 4, 6, 7, 8}; //styles that will bold
+            foreach (var r in rows)
+            {
+                var cells = r.Elements<Cell>().ToArray();
+
+                //using cell index as my column
+                for (int i = 0; i < cells.Length; i++)
+                {
+                    var cell = cells[i];
+                    var cellValue = cell.CellValue == null ? string.Empty : cell.CellValue.InnerText;
+                    var cellTextLength = cellValue.Length;
+
+                    if (cell.StyleIndex != null && numberStyles.Contains<uint>(cell.StyleIndex))
+                    {
+                        int thousandCount = (int) Math.Truncate((double) cellTextLength / 4);
+
+                        //add 3 for '.00' 
+                        cellTextLength += (3 + thousandCount);
+                    }
+
+                    if (cell.StyleIndex != null && boldStyles.Contains<uint>(cell.StyleIndex))
+                    {
+                        //add an extra char for bold - not 100% acurate but good enough for what i need.
+                        cellTextLength += 1;
+                    }
+
+                    if (maxColWidth.ContainsKey(i))
+                    {
+                        var current = maxColWidth[i];
+                        if (cellTextLength > current)
+                        {
+                            maxColWidth[i] = cellTextLength;
+                        }
+                    }
+                    else
+                    {
+                        maxColWidth.Add(i, cellTextLength);
+                    }
+                }
+            }
+
+            return maxColWidth;
         }
     }
 
