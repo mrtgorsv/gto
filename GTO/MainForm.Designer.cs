@@ -35,14 +35,17 @@
             this.AddJudgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GtoEventTestMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GtoEventMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlayerReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MedalReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EventReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ContentPanel = new System.Windows.Forms.Panel();
             this.AdminMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.UserMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PlayerMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.JudgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContentPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +55,7 @@
             this.RegistrationToolStripMenuItem,
             this.GtoEventTestMenuItem,
             this.GtoEventMenuItem,
-            this.ReportMenuItem,
+            this.отчетыToolStripMenuItem,
             this.AboutMenuItem,
             this.CloseMenuItem,
             this.AdminMenu});
@@ -95,11 +98,33 @@
             this.GtoEventMenuItem.Size = new System.Drawing.Size(116, 20);
             this.GtoEventMenuItem.Text = "К соревнованиям";
             // 
-            // ReportMenuItem
+            // отчетыToolStripMenuItem
             // 
-            this.ReportMenuItem.Name = "ReportMenuItem";
-            this.ReportMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.ReportMenuItem.Text = "Отчет";
+            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PlayerReportMenuItem,
+            this.MedalReportMenuItem,
+            this.EventReportMenuItem});
+            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
+            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.отчетыToolStripMenuItem.Text = "Отчеты";
+            // 
+            // PlayerReportMenuItem
+            // 
+            this.PlayerReportMenuItem.Name = "PlayerReportMenuItem";
+            this.PlayerReportMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.PlayerReportMenuItem.Text = "\"Информация об участнике\"";
+            // 
+            // MedalReportMenuItem
+            // 
+            this.MedalReportMenuItem.Name = "MedalReportMenuItem";
+            this.MedalReportMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.MedalReportMenuItem.Text = "\"Полученные медали\"";
+            // 
+            // EventReportMenuItem
+            // 
+            this.EventReportMenuItem.Name = "EventReportMenuItem";
+            this.EventReportMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.EventReportMenuItem.Text = "\"Итоги соревнования\"";
             // 
             // AboutMenuItem
             // 
@@ -112,16 +137,6 @@
             this.CloseMenuItem.Name = "CloseMenuItem";
             this.CloseMenuItem.Size = new System.Drawing.Size(53, 20);
             this.CloseMenuItem.Text = "Выход";
-            // 
-            // ContentPanel
-            // 
-            this.ContentPanel.BackgroundImage = global::GTO.Properties.Resources.ehCixrFnIvY;
-            this.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContentPanel.Location = new System.Drawing.Point(0, 24);
-            this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(749, 466);
-            this.ContentPanel.TabIndex = 1;
             // 
             // AdminMenu
             // 
@@ -152,6 +167,16 @@
             this.JudgeMenuItem.Size = new System.Drawing.Size(152, 22);
             this.JudgeMenuItem.Text = "Судьи";
             // 
+            // ContentPanel
+            // 
+            this.ContentPanel.BackgroundImage = global::GTO.Properties.Resources.ehCixrFnIvY;
+            this.ContentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ContentPanel.Location = new System.Drawing.Point(0, 24);
+            this.ContentPanel.Name = "ContentPanel";
+            this.ContentPanel.Size = new System.Drawing.Size(749, 466);
+            this.ContentPanel.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,7 +206,6 @@
         private System.Windows.Forms.ToolStripMenuItem AddJudgeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GtoEventTestMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GtoEventMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ReportMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CloseMenuItem;
         private System.Windows.Forms.Panel ContentPanel;
@@ -189,5 +213,9 @@
         private System.Windows.Forms.ToolStripMenuItem UserMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PlayerMenuItem;
         private System.Windows.Forms.ToolStripMenuItem JudgeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PlayerReportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MedalReportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EventReportMenuItem;
     }
 }

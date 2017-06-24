@@ -135,7 +135,9 @@
     <Compile Include="Presenters\Judges\JudgeListPresenter.cs" />
     <Compile Include="Presenters\ListPresenterBase.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
-    <Compile Include="Presenters\PlayerReportPresenter.cs" />
+    <Compile Include="Presenters\Report\EventReportPresenter.cs" />
+    <Compile Include="Presenters\Report\MedalReportPresenter.cs" />
+    <Compile Include="Presenters\Report\PlayerReportPresenter.cs" />
     <Compile Include="Presenters\GtoEventTestResultPresenter.cs" />
     <Compile Include="Presenters\GtoEventPresenter.cs" />
     <Compile Include="Presenters\Judges\JudgePresenter.cs" />
@@ -144,6 +146,18 @@
     <Compile Include="Presenters\Users\UserListPresenter.cs" />
     <Compile Include="Presenters\Users\UserPresenter.cs" />
     <Compile Include="Utils\CurrentPrincipal.cs" />
+    <Compile Include="Views\Reports\EventReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\EventReportForm.Designer.cs">
+      <DependentUpon>EventReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\MedalReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\MedalReportForm.Designer.cs">
+      <DependentUpon>MedalReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Intefaces\IEditForm.cs" />
     <Compile Include="Views\Users\EditUserForm.cs">
       <SubType>Form</SubType>
@@ -183,11 +197,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Info\ReportForm.cs">
+    <Compile Include="Views\Reports\PlayerReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Info\ReportForm.Designer.cs">
-      <DependentUpon>ReportForm.cs</DependentUpon>
+    <Compile Include="Views\Reports\PlayerReportForm.Designer.cs">
+      <DependentUpon>PlayerReportForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Controls\GtoEventTestResultTableControl.resx">
       <DependentUpon>GtoEventTestResultTableControl.cs</DependentUpon>
@@ -200,6 +214,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\List\ListControlBase.resx">
       <DependentUpon>ListControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\EventReportForm.resx">
+      <DependentUpon>EventReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\MedalReportForm.resx">
+      <DependentUpon>MedalReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\EditUserForm.resx">
       <DependentUpon>EditUserForm.cs</DependentUpon>
@@ -229,8 +249,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\Info\ReportForm.resx">
-      <DependentUpon>ReportForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Reports\PlayerReportForm.resx">
+      <DependentUpon>PlayerReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

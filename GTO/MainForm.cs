@@ -4,8 +4,10 @@ using GTO.Controls;
 using GTO.Controls.List;
 using GTO.Utils;
 using GTO.Views;
+using GTO.Views.Info;
 using GTO.Views.Judges;
 using GTO.Views.Players;
+using GTO.Views.Reports;
 
 namespace GTO
 {
@@ -28,9 +30,11 @@ namespace GTO
             Load += OnLoad;
             CloseMenuItem.Click += OnCloseMenuItemClick;
             AboutMenuItem.Click += OnAboutMenuItemClick;
-            ReportMenuItem.Click += OnReportMenuItemClick;
             GtoEventMenuItem.Click += OnGtoEventMenuItemClick;
             GtoEventTestMenuItem.Click += OnGtoEventTestMenuItemClick;
+            PlayerReportMenuItem.Click += OnPlayerReportMenuItemClick;
+            MedalReportMenuItem.Click += OnMedalReportMenuItemClick;
+            EventReportMenuItem.Click += OnEventReportMenuItemClick;
             AddJudgeMenuItem.Click += OnAddJudgeMenuItemClick;
             AddPlayerMenuItem.Click += OnAddPlayerMenuItemClick;
 
@@ -104,11 +108,25 @@ namespace GTO
             ShowForm(resultForm);
         }
 
-        private void OnReportMenuItemClick(object sender, EventArgs e)
+        private void OnPlayerReportMenuItemClick(object sender, EventArgs e)
         {
             ContentPanel.Controls.Clear();
-            var reportForm = new ReportForm();
-            reportForm.ShowDialog(this);
+            var playerReportForm = new PlayerReportForm();
+            playerReportForm.ShowDialog(this);
+        }
+
+        private void OnMedalReportMenuItemClick(object sender, EventArgs e)
+        {
+            ContentPanel.Controls.Clear();
+            var medalReportForm = new MedalReportForm();
+            medalReportForm.ShowDialog(this);
+        }
+
+        private void OnEventReportMenuItemClick(object sender, EventArgs e)
+        {
+            ContentPanel.Controls.Clear();
+            var eventReportForm = new EventReportForm();
+            eventReportForm.ShowDialog(this);
         }
 
         private void OnNeedClose(object sender, EventArgs args)

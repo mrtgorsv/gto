@@ -126,13 +126,6 @@
       <DependentUpon>GtoModel.edmx</DependentUpon>
       <LastGenOutput>GtoModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Database.12.0\GtoDatabase.ldf">
-      <DependentUpon>GtoDatabase.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database.12.0\GtoDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Database\GtoDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -142,7 +135,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Context\GtoModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GtoModel.Designer.cs</LastGenOutput>

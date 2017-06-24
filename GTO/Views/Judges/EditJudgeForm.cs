@@ -59,7 +59,11 @@ namespace GTO.Views.Judges
             PassCodeTextBox.Text = CurrentPresenter.EditableObject.PassCode;
             PassNumberUpDown.Value = CurrentPresenter.EditableObject.PassNumber;
             PassSerialUpDown.Value = CurrentPresenter.EditableObject.PassSerial;
-            PassDateDatePicker.Value = CurrentPresenter.EditableObject.PassDate;
+
+            if (CurrentPresenter.EditableObject.PassDate != DateTime.MinValue)
+            {
+                PassDateDatePicker.Value = CurrentPresenter.EditableObject.PassDate;
+            }
             PassLocationTextBox.Text = CurrentPresenter.EditableObject.PassLocation;
 
             CategoryTextBox.Text = CurrentPresenter.EditableObject.Category;

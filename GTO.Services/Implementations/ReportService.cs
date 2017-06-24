@@ -20,7 +20,7 @@ namespace GTO.Services.Implementations
             _context?.Dispose();
         }
 
-        public void ShowReport(int playerId, string fileName)
+        public void ShowPlayerReport(int playerId, string fileName)
         {
             var selectedPlayer = _context.Players.FirstOrDefault(p => p.Id == playerId);
             if (selectedPlayer == null)
@@ -174,7 +174,6 @@ namespace GTO.Services.Implementations
                     }
                 }
 
-
                 sheetData.AppendChild(new Row());
 
                 var secondHeader = new Row();
@@ -202,6 +201,16 @@ namespace GTO.Services.Implementations
             Process.Start(AppDomain.CurrentDomain.BaseDirectory);
         }
 
+        public void ShowMedalReport(DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ShowEventReport(DateTime eventDate)
+        {
+            throw new NotImplementedException();
+        }
+
         private void AddGtoResult(SheetData sheet, string medalName)
         {
             Row gtoResultRow = new Row();
@@ -211,47 +220,15 @@ namespace GTO.Services.Implementations
             sheet.Append(gtoResultRow);
         }
 
-        private void CreateCell(string value, Row header)
-        {
-            Cell cell = new Cell
-            {
-                DataType = CellValues.String,
-                CellValue = new CellValue(value)
-            };
-            header.AppendChild(cell);
-        }
-
-        private Columns AutoSize(SheetData sheetData)
-        {
-            var maxColWidth = GetMaxCharacterWidth(sheetData);
-
-            Columns columns = new Columns();
-            const double maxWidth = 7;
-            foreach (var item in maxColWidth)
-            {
-                var width = Math.Truncate((item.Value * maxWidth + 15) / maxWidth * 256) / 256;
-
-                Column col = new Column
-                {
-                    BestFit = true,
-                    Min = (uint) (item.Key + 1),
-                    Max = (uint) (item.Key + 1),
-                    CustomWidth = true,
-                    Width = width
-                };
-                columns.Append(col);
-            }
-
-            return columns;
-        }
+        #region Utils
 
         private static Dictionary<int, int> GetMaxCharacterWidth(SheetData sheetData)
         {
             //iterate over all cells getting a max char value for each column
             Dictionary<int, int> maxColWidth = new Dictionary<int, int>();
             var rows = sheetData.Elements<Row>();
-            UInt32[] numberStyles = {5, 6, 7, 8}; //styles that will add extra chars
-            UInt32[] boldStyles = {1, 2, 3, 4, 6, 7, 8}; //styles that will bold
+            UInt32[] numberStyles = { 5, 6, 7, 8 }; //styles that will add extra chars
+            UInt32[] boldStyles = { 1, 2, 3, 4, 6, 7, 8 }; //styles that will bold
             foreach (var r in rows)
             {
                 var cells = r.Elements<Cell>().ToArray();
@@ -265,7 +242,7 @@ namespace GTO.Services.Implementations
 
                     if (cell.StyleIndex != null && numberStyles.Contains<uint>(cell.StyleIndex))
                     {
-                        int thousandCount = (int) Math.Truncate((double) cellTextLength / 4);
+                        int thousandCount = (int)Math.Truncate((double)cellTextLength / 4);
 
                         //add 3 for '.00' 
                         cellTextLength += (3 + thousandCount);
@@ -294,6 +271,43 @@ namespace GTO.Services.Implementations
 
             return maxColWidth;
         }
+
+        private void CreateCell(string value, Row header)
+        {
+            Cell cell = new Cell
+            {
+                DataType = CellValues.String,
+                CellValue = new CellValue(value)
+            };
+            header.AppendChild(cell);
+        }
+
+        private Columns AutoSize(SheetData sheetData)
+        {
+            var maxColWidth = GetMaxCharacterWidth(sheetData);
+
+            Columns columns = new Columns();
+            const double maxWidth = 7;
+            foreach (var item in maxColWidth)
+            {
+                var width = Math.Truncate((item.Value * maxWidth + 15) / maxWidth * 256) / 256;
+
+                Column col = new Column
+                {
+                    BestFit = true,
+                    Min = (uint)(item.Key + 1),
+                    Max = (uint)(item.Key + 1),
+                    CustomWidth = true,
+                    Width = width
+                };
+                columns.Append(col);
+            }
+
+            return columns;
+        }
+
+        #endregion
+
     }
 
     public class PlayerTestInfo
