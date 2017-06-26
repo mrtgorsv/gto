@@ -176,11 +176,8 @@ namespace GTO.Services.Implementations
         private void ExportMedalReport(DateTime start, DateTime end, List<GtoEventPlayerRecord> eventRecords)
         {
             List<ResultRank> medals = eventRecords
-                .Where(er => !er.ResultRank.Equals(ResultRank.NoRank))
                 .Select(er => er.ResultRank)
                 .ToList();
-
-            int gtoMedalCount = 0;
 
             int eventPlayerCount = eventRecords.Count;
             int eventPlayerWithMedalCount = eventRecords.Count(er => !er.ResultRank.Equals(ResultRank.NoRank));
@@ -194,27 +191,28 @@ namespace GTO.Services.Implementations
                 #region Header
 
                 AppendEmptyRow(sheetData);
-                AppendRow(sheetData, 2, "Период с", start.ToString("d"), "по", end.ToString("d"));
+                AppendRow(sheetData, 0, "Период с", start.ToString("d"), "по", end.ToString("d"));
                 AppendEmptyRow(sheetData);
 
                 #endregion
 
                 #region Medals statistic
 
-                AppendRow(sheetData, 1 , "Пройдено испытаний", string.Empty  , string.Empty                                              , string.Empty , "Получено значков ГТО");
-                AppendRow(sheetData, 2                       , "Всего"       , medals.Count.ToString()                                   , string.Empty , string.Empty          , "Всего"   , gtoMedalCount.ToString());
-                AppendRow(sheetData, 2                       , "Золото"      , medals.Count(m => m.Equals(ResultRank.Gold)).ToString()   , string.Empty , string.Empty          , "Золото"  , gtoMedalCount.ToString());
-                AppendRow(sheetData, 2                       , "Серебро"     , medals.Count(m => m.Equals(ResultRank.Silver)).ToString() , string.Empty , string.Empty          , "Серебро" , gtoMedalCount.ToString());
-                AppendRow(sheetData, 2                       , "Бронза"      , medals.Count(m => m.Equals(ResultRank.Bronze)).ToString() , string.Empty , string.Empty          , "Бронза"  , gtoMedalCount.ToString());
+                AppendRow(sheetData, 0, "Пройдено испытаний");
+                AppendRow(sheetData, 1                       , "Всего"       , medals.Count.ToString());
+                AppendRow(sheetData, 1                       , "Золото"      , medals.Count(m => m.Equals(ResultRank.Gold)).ToString());
+                AppendRow(sheetData, 1                       , "Серебро"     , medals.Count(m => m.Equals(ResultRank.Silver)).ToString());
+                AppendRow(sheetData, 1                       , "Бронза"      , medals.Count(m => m.Equals(ResultRank.Bronze)).ToString());
+                AppendRow(sheetData, 1                       , "Без медали"  , medals.Count(m => m.Equals(ResultRank.NoRank)).ToString());
                 AppendEmptyRow(sheetData);
 
                 #endregion
 
                 #region Player stats
 
-                AppendRow(sheetData, 2 , "Спортсменов учавствовало");
-                AppendRow(sheetData, 3                             , "Всего"     , eventPlayerCount.ToString());
-                AppendRow(sheetData, 3                             , "С медалями", eventPlayerWithMedalCount.ToString());
+                AppendRow(sheetData, 0 , "Спортсменов учавствовало");
+                AppendRow(sheetData, 1                             , "Всего"     , eventPlayerCount.ToString());
+                AppendRow(sheetData, 1                             , "С медалями", eventPlayerWithMedalCount.ToString());
 
                 #endregion
 
