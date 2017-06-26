@@ -35,7 +35,7 @@
             this.AddJudgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GtoEventTestMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GtoEventMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PlayerReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MedalReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EventReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +55,7 @@
             this.RegistrationToolStripMenuItem,
             this.GtoEventTestMenuItem,
             this.GtoEventMenuItem,
-            this.отчетыToolStripMenuItem,
+            this.ReportsMenuItem,
             this.AboutMenuItem,
             this.CloseMenuItem,
             this.AdminMenu});
@@ -98,15 +98,15 @@
             this.GtoEventMenuItem.Size = new System.Drawing.Size(116, 20);
             this.GtoEventMenuItem.Text = "К соревнованиям";
             // 
-            // отчетыToolStripMenuItem
+            // ReportsMenuItem
             // 
-            this.отчетыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ReportsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PlayerReportMenuItem,
             this.MedalReportMenuItem,
             this.EventReportMenuItem});
-            this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
-            this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.отчетыToolStripMenuItem.Text = "Отчеты";
+            this.ReportsMenuItem.Name = "ReportsMenuItem";
+            this.ReportsMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.ReportsMenuItem.Text = "Отчеты";
             // 
             // PlayerReportMenuItem
             // 
@@ -213,7 +213,7 @@
         private System.Windows.Forms.ToolStripMenuItem UserMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PlayerMenuItem;
         private System.Windows.Forms.ToolStripMenuItem JudgeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReportsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PlayerReportMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MedalReportMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EventReportMenuItem;

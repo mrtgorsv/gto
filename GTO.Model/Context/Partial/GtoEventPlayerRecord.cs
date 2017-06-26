@@ -16,7 +16,7 @@
                 {
                     case Enums.ResultRank.Gold:
                         return "золото";
-                    case Enums.ResultRank.Serebro:
+                    case Enums.ResultRank.Silver:
                         return "серебро";
                     case Enums.ResultRank.Bronze:
                         return "бронза";

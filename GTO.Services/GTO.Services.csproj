@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\GtoEventService.cs" />
+    <Compile Include="Implementations\AppService.cs" />
     <Compile Include="Implementations\JudgeService.cs" />
     <Compile Include="Implementations\ReportService.cs" />
     <Compile Include="Implementations\UserService.cs" />

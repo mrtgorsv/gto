@@ -24,6 +24,30 @@ namespace GTO.Services.Implementations
             _context.SaveChanges();
         }
 
+        public List<TestGroup> GetTestGroups()
+        {
+            return _context.TestGroups.ToList();
+        }
+
+        public List<AgeGroup> GetAgeGroups()
+        {
+            return _context.AgeGroups
+                .Include(ag => ag.TestGroups)
+                .ToList();
+        }
+
+        public bool EventExists(DateTime eventDate)
+        {
+            DateTime nextDay = eventDate.AddDays(1);
+            return _context.GtoEvents.Any(ge => ge.EventDate > eventDate && ge.EventDate < nextDay);
+        }
+
+        public GtoEvent GetByDate(DateTime eventDate)
+        {
+            DateTime nextDay = eventDate.AddDays(1);
+            return _context.GtoEvents.SingleOrDefault(ge => ge.EventDate > eventDate && ge.EventDate < nextDay);
+        }
+
         public GtoEvent GetCurrentEventRegistration()
         {
             var currDate = DateTime.Now.Date;
@@ -81,11 +105,6 @@ namespace GTO.Services.Implementations
                 _context.Entry(gtoEvent).State = EntityState.Modified;
             }
             _context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            _context?.Dispose();
         }
 
         public List<GtoEventPlayerRecord> GetCurrentEventRecords()
@@ -149,14 +168,16 @@ namespace GTO.Services.Implementations
             }
         }
 
-        public List<TestGroup> GetTestGroups()
+        public void Dispose()
         {
-            return _context.TestGroups.ToList();
+            _context?.Dispose();
         }
-        public List<AgeGroup> GetAgeGroups()
+
+        public List<GtoEvent> GetByRange(DateTime start, DateTime end)
         {
-            return _context.AgeGroups
-                .Include(ag=> ag.TestGroups)
+            end = end.AddDays(1).AddMilliseconds(-1);
+            return _context.GtoEvents
+                .Where(ge => ge.EventDate >= start && ge.EventDate <= end)
                 .ToList();
         }
     }

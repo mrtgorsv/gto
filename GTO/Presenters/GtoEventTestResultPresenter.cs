@@ -147,7 +147,7 @@ namespace GTO.Presenters
             }
             if (!testGroup.Silver.HasValue || result <= testGroup.Silver)
             {
-                return ResultRank.Serebro;
+                return ResultRank.Silver;
             }
             if (!testGroup.Bronze.HasValue || result <= testGroup.Bronze)
             {
@@ -186,7 +186,7 @@ namespace GTO.Presenters
                 }
                 if (!testGroup.Silver.HasValue || result >= testGroup.Silver)
                 {
-                    return ResultRank.Serebro;
+                    return ResultRank.Silver;
                 }
                 if (!testGroup.Bronze.HasValue || result >= testGroup.Bronze)
                 {
@@ -208,7 +208,7 @@ namespace GTO.Presenters
                 }
                 if (!testGroup.Silver.HasValue || result <= testGroup.Silver)
                 {
-                    return ResultRank.Serebro;
+                    return ResultRank.Silver;
                 }
                 if (!testGroup.Bronze.HasValue || result <= testGroup.Bronze)
                 {

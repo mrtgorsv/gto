@@ -16,7 +16,7 @@ namespace GTO.Presenters.Report
 
         public void ShowReport(DateTime start, DateTime end)
         {
-            _reportService.ShowMedalReport(start, end);
+            _reportService.ShowMedalReport(start.Date, end.Date);
         }
 
         public void Dispose()

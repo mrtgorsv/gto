@@ -4,7 +4,7 @@
     {
         NoRank = 0,
         Gold = 1,
-        Serebro = 2,
+        Silver = 2,
         Bronze = 3,
 
     }

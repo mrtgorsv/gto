@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using GTO.Model.Context;
+using GTO.Model.Enums;
 
 namespace GTO.Services.Implementations
 {
@@ -50,6 +51,25 @@ namespace GTO.Services.Implementations
             {
                 _context.Entry(refreshEntity).Reload();
             }
+        }
+
+        public IQueryable<IGrouping<int, GtoEventPlayerRecord>> GetGroupedPlayerRecords(int playerId)
+        {
+            return
+                _context.GtoEventPlayerRecords
+                    .Include(epr => epr.GtoEventTest)
+                    .Include(epr => epr.GtoEventTest.Test)
+                    .Where(epr => epr.GtoEventPlayer.PlayerId == playerId)
+                    .Where(rg => rg.ResultRank != ResultRank.NoRank)
+                    .GroupBy(gepr => gepr.GtoEventTest.TestId);
+        }
+
+        public AgeGroup GetplayerAgeGroup(int playerAge)
+        {
+            return _context.AgeGroups
+                .Include(ag => ag.TestGroups)
+                .Include(ag => ag.TestGroups.Select(tg => tg.Test))
+                .FirstOrDefault(ag => ag.Max >= playerAge && ag.Min <= playerAge);
         }
     }
 }
